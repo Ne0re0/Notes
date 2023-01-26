@@ -7,8 +7,9 @@ Ports :
 
 110 pop3
 115 secure ftp
+139 SMB / netbios
 143 IMAP
-445 SMB
+445 SMB / netbios
 465 Secure SMTP
 993 Secure IMAP
 995 Secure POP3
