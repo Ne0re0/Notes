@@ -1,0 +1,5 @@
+TELNET
+
+SSH du pauvre - pas secure
+
+telnet [ip] [port]

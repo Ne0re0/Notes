@@ -1,0 +1,10 @@
+Python WebServer
+
+$ sudo python3 http.server 9000 -> 9000 peut être n'importe quel port 
+				-> start the webserv
+				-> Il faut peut être allaow les machines à acceder aux ports : 
+				$sudo ufw allow from 10.10.227.247 proto tcp to any port 9000
+
+on remote computers : 
+
+$ wget http://tun0IP/file.name	-> download the file

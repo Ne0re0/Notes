@@ -1,0 +1,5 @@
+privesc steps
+
+- try go into other account directorys
+- try sudo -l
+- try SUID files

