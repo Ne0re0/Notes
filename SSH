@@ -10,7 +10,7 @@ to bruteforce password :
 	hydra -t 16 -l USERNAME -P /usr/share/wordlists/rockyou.txt -vV 10.10.230.250 ssh
 
 options : 
-		chmod 600 id_rsa	-> changer les permissions pour eviter les erreurs ? 
+		chmod 600 id_rsa	-> changer les permissions
 		-i  id_rsa		-> clé de connection
 		
 ERROR :
@@ -23,7 +23,7 @@ ERROR :
 commande in SSH :
 
 └─$ wget -i downloads.txt
-└─$ scp mission24@10.10.218.73:/tmp/bribe .
+└─$ scp mission24@10.10.218.73:/tmp/remote.txt .
 
 PORT FORWARDING
 En remote :
@@ -31,5 +31,5 @@ En remote :
 
 En local :
 	  localPort      remotePort  remoteusername@remoteIP
-└─$ ssh -L 10000:localhost:10000 <username>@<ip>
+└─$ ssh -L <remote active port>:localhost:10000 <username>@<ip>
 Dans firefox : http://localhost:10000
