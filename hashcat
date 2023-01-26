@@ -1,6 +1,6 @@
 hashcat 
 
-hashcat -m 0 -o decrypt.txt -a 0 encrypt.txt /home/neo/Pentest/rockyou.txt
+hashcat -m 0 -o decrypted.txt -a 0 hash.txt /usr/share/wordlists/rockyou.txt
 
 -m number -> find the hash type and search in hashcat.net for the number id
 -o file.txt	-> file où sera stocké la réponse
