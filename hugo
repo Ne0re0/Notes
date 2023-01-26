@@ -15,7 +15,7 @@ hugo -d public
 cd public
 git add .
 git commit -m "message"
-git push -u sshcvhugo main
+git push
 
 
 
