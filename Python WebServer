@@ -7,4 +7,17 @@ $ sudo python3 http.server 9000 -> 9000 peut être n'importe quel port
 
 on remote computers : 
 
-$ wget http://tun0IP/file.name	-> download the file
+$ wget http://IP/file.name	-> download the file
+
+We can do port forwarding with ngrok
+
+ngrok http <localport where python webserv is running>
+
+Exemple :
+Local machine :
+sudo python3 http.server 9000
+ngrok http 9000
+
+Remote machine :
+
+wget <full ngrok given https address>
