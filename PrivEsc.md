@@ -67,13 +67,13 @@ Exemple :
 ***Password:*** An x character indicates that encrypted password is stored in /etc/shadow file. sha512  
 ***User ID (UID):***Each user must be assigned a user ID (UID).   
 ***UID 0*** = root /  
-***UIDs 1-99*** other predefined accounts.
+***UIDs 1-99*** other predefined accounts.  
 ***UID 100-999*** are reserved by system for administrative and system accounts/groups.  
 ***UID 1000+*** users  
 ***Group ID (GID):*** The primary group ID (stored in /etc/group file)  
 ***User ID Info:*** extra information about the users.  
 ***Home directory:*** The absolute path to the directory the user will be in when they log in  
-***Command/shell: ***The absolute path of a command or shell (/bin/bash). 
+***Command/shell:***The absolute path of a command or shell (/bin/bash). 
 
 ### READABLE /ETC/SHADOW :
 crack the hash with john : it's supposed to be sha-512
@@ -98,18 +98,19 @@ On regarde si certains se lance avec des droits root et si on peut les modifier
 Si oui, il y a la place pour un reverse shell  
 
 
-Format =# = ID  
-m = Minute  
-h = Hour  
-dom = Day of the month  
-mon = Month  
-dow = Day of the week  
-user = What user the command will run as  
-command = What command should be run  
+***Format =# = ID***  
+***m*** = Minute  
+***h*** = Hour  
+***dom*** = Day of the month  
+***mon*** = Month  
+***dow*** = Day of the week  
+***user*** = What user the command will run as  
+***command*** = What command should be run  
 For Example :    
+```
 -  m   h dom mon dow user  command  
 17 *   1  *   *   *  root  cd / && run-parts --report /etc/cron.hourly
-
+```
 ### WRITEABLE CRON JOBS :
 ### Exemple :
 ##### REVERSE SHELL :
