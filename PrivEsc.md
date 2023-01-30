@@ -60,19 +60,20 @@ ou juste : openssl passwd [newpassword]
 ```
 
 ***FORMAT PASSWD :***
-***test:x:0:0:root:/root:/bin/bash ***
+Exemple :
+```test:x:0:0:root:/root:/bin/bash```
 [as divided by colon (:)]  
-Username: It is used when user logs in. It should be between 1 and 32 characters in length.  
-Password: An x character indicates that encrypted password is stored in /etc/shadow file. sha512  
-User ID (UID): Each user must be assigned a user ID (UID).   
-UID 0 = root /   
-UIDs 1-99 other predefined accounts.   
-UID 100-999 are reserved by system for administrative and system accounts/groups.  
-UID 1000+ users  
-Group ID (GID): The primary group ID (stored in /etc/group file)  
-User ID Info: extra information about the users.  
-Home directory: The absolute path to the directory the user will be in when they log in  
-Command/shell: The absolute path of a command or shell (/bin/bash). 
+***Username:*** It is used when user logs in. It should be between 1 and 32 characters in length.  
+***Password:*** An x character indicates that encrypted password is stored in /etc/shadow file. sha512  
+***User ID (UID):***Each user must be assigned a user ID (UID).   
+***UID 0*** = root /  
+***UIDs 1-99*** other predefined accounts.
+***UID 100-999*** are reserved by system for administrative and system accounts/groups.  
+***UID 1000+*** users  
+***Group ID (GID):*** The primary group ID (stored in /etc/group file)  
+***User ID Info:*** extra information about the users.  
+***Home directory:*** The absolute path to the directory the user will be in when they log in  
+***Command/shell: ***The absolute path of a command or shell (/bin/bash). 
 
 ### READABLE /ETC/SHADOW :
 crack the hash with john : it's supposed to be sha-512
