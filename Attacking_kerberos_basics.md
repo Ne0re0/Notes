@@ -8,6 +8,9 @@
 - Authentication ticket
 - used to request service tickets from the TGS
 
+## KRBTGT : 
+- Those are like golden TGTs, they allow to get access to every TGS
+
 ## KDC Key Distribution Center
 - Service for issuing TGT and service tickets that consist of the Authentication Service and the Ticket Granting Service.
 - Constituted by AS and TGS
@@ -88,23 +91,112 @@ This portion contains :
 6) The service grants access  
 
 # KERBEROS TICKET OVERVIEW
+TGTs can come with various form such as .kirbi (Used by Rubeus) or .ccache (for Impacket).  
+Those tickets are b64 encoded.  
+TGTs are only used in order to receive a TGS
 
 
 
+# ATTACK PRIVILEGE REQUIREMENT
+
+- Kerbrute Enumeration - No domain access required 
+- Pass the Ticket - Access as a user to the domain required
+- Kerberoasting - Access as any user required
+- AS-REP Roasting - Access as any user required
+- Golden Ticket - Full domain compromise (domain admin) required 
+- Silver Ticket - Service hash required 
+- Skeleton Key - Full domain compromise (domain admin) required
 
 
+# ENUMERATION / KERBRUTE
+
+***/!\ You need to add the DNS domain name along with the machine IP to /etc/hosts***
+
+### ABUSING PRE-AUHTENTICATION
+Notice that bruteforcing with kerbrute doesn't trigger the account failed to log on event which can throw up ref flags to blue team ! 
+
+Kerbrute : https://github.com/ropnop/kerbrute/releases
+
+##### ENUM USERS
+```bash
+kerbrute userenum --dc CONTROLLER.local -d CONTROLLER.local userlist.txt
+```
+# RUBEUS OVERVIEW
+
+Rubeus has a wide variety of attacks and features that allow it to be a very versatile tool for attacking Kerberos. Just some of the many tools and attacks include overpass the hash, ticket requests and renewals, ticket management, ticket extraction, harvesting, pass the ticket, AS-REP Roasting, and Kerberoasting.
+
+The tool has way too many attacks and features for me to cover all of them so I'll be covering only the ones I think are most crucial to understand how to attack Kerberos however I encourage you to research and learn more about Rubeus and its whole host of attacks and features here - https://github.com/GhostPack/Rubeus
 
 
+# Harvesting & Brute-Forcing Tickets / RUBEUS
 
 
+***/!\ This require to ssh or rdp into the machine***
+This also require to have Rubeus installed in the machine
+
+#### Harvesting tickets 
+Harvesting gathers tickets that are being transferred to the KDC and saves them for use in other attacks such as the pass the ticket attack.
+
+The following payload will tells Rubeus to harvest TGT every 30s
+```cmd
+Rubeus.exe harvest /interval:30
+```
+
+#### Brute-Forcing / Password-Spraying
+***Brute-Forcing***:Try a bunch of password for one user account
+***Password-Spaying***:Try one password for a bunch of known user account
+
+Before password spraying with Rubeus, you need to add the domain controller domain name to the windows host file. 
+```cmd
+echo IP DOMAINNAME.local >> C:\Windows\System32\drivers\etc\hosts
+```
+Since we are logged into the machine, the following command will find every user account and spray the given password against them all.
+```cmd
+Rubeus.exe brute /password:Password1 /noticket
+```
+If there is a match, it will return the .kirbi TGT for that user, it looks like that : 
+[sortie_spray_kerbrute](images/sortie_spray_kerbrute.png)
 
 
+# KERBEROASTING / RUBEUS & IMPACKET
+***Most popular Kerberos attack***
+Kerberoasting allows a user to request a service ticket for any service with a registered SPN then use that ticket to crack the service password
 
+To find account those are Kerberoastable, we can use BloodHound (I will try it another time)
+#### WITH RUBEUS
+This is used from the remote machine
+The following command line will dump Kerberos hash and return any kerberoastable users
+```cmd
+Rubeus.exe kerberoast
+```
+- We can now copy the hash to our machine and crack it with : 
+be careful of spaces and /n when copy-pasting
+```bash
+hashcat -m 13100 -a 0 hash.txt Pass.txt
+```
 
+#### WITH IMPACKET
+This is used from our local machine and it's require to have a valid username and password credentials
+This following command line will dump Kerberos hashes and return any kerberoastable users
+```bash
+GetUserSPNs.py controller.local/Machine1:Password1 -dc-ip 10.10.74.147 -request
+```
 
+- We can now copy the hash to our machine and crack it with : 
+be careful of spaces and /n when copy-pasting
+```bash
+hashcat -m 13100 -a 0 hash.txt Pass.txt
+```
 
+# What Can a Service Account do?
 
+- There are various ways of exfiltrating data or collecting loot depending on whether the service account is a domain admin or not.
+- If the service account is a domain admin, we can dump NTDS.dit.
+- If the service account isn't a domain admin, we can escalate privileges or even spray passwords the password against other accounts
 
+# Mitigation
+- String passwords (As always -_-)
+- Don't make services accounts domain admins
 
 
 
