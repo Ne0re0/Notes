@@ -52,7 +52,7 @@ Then, go to firefox and type ```http://localhost:10000```
 mkdir ~/.ssh
 cd ~/.ssh
 ssh-keygen
-cat id_rsa.pub > authorized_keys
+cat id_rsa > authorized_keys
 ```
 
 ## START AN SSH SERVER
@@ -65,5 +65,25 @@ dpkg-reconfigure openssh-server
 ```
 Then, we can start the service with systemctl
 ```bash
+systemctl start ssh.service
+```
+
+
+## POST EXPLOITATION SCRIPT :
+```bash
+# Creating root' ssh keys
+mkdir /root/.ssh/
+cd /root/.ssh/
+rm /root/.ssh/*
+ssh-keygen -f /root/.ssh/id-rsa -N "" 
+
+cat /root/.ssh/id_rsa.pub > /root/.ssh/authorized_keys
+
+# Enabling ssh.service
+mkdir -p /etc/ssh/default-keys
+cd /etc/ssh/
+mv /etc/ssh/ssh_host_* /etc/ssh/default-keys/
+dpkg-reconfigure openssh-server
+systemctl enable ssh.service
 systemctl start ssh.service
 ```
