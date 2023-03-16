@@ -1,14 +1,20 @@
-FTP : File Transfer protocole
+# FTP : File Transfer protocole
 
-Non crypté
-Login anonymous possible sans mot de passes
+***Non crypté***  
+***Login anonymous possible sans mot de passe***
 
-
+```bash
 ftp <ip>
-$ username : mike
-$ password :
+```
+```
+$ username : anonymous  
+$ password : 
+```
 
+## possibilité de brute force le mot de passe avec Hydra
+```bash
+hydra -l username -P /usr/share/wordlists/rockyou.txt <ip> ftp
+```
 
-possibilité de brute force le mot de passe avec Hydra
-
-hydra -l username -P rockyou.txt -vV <ip> ftp
+## Useful tips
+1. Check for permissions, sometimes anyone can write or rewrite a file
