@@ -4,7 +4,7 @@ https://osintframework.com/
 
 
 
-Images :
+## Images :
 
 Analyse Visuelle grossière
 exiftool
@@ -12,16 +12,32 @@ reverse image search with google
 reverse image search with TinEye or Yandex
 reverse image search on weird things such as buildings, or something recognizable
 
-Videos :
+## Videos :
 Analyse visuelle (topologie / nom de batiments / c'est Geoguessr)
 Reverse image sur chaque frame de la vidéo
 
 
-Emails :
+## Emails :
+```bash
 mosint example@gmail.com
+```
 
-Github:
-https://github.com/username
+## Pseudos
 
-Instagram
+
+
+## Instagram
 Osintgram (wasn't working when i wrote that)
+
+
+## Automobile
+
+### Par plaque 
+https://evaluer-chauffeur.fr
+https://www.cartegrise.com
+
+
+## Divers
+
+https://haveibeenpwned.com/  
+
