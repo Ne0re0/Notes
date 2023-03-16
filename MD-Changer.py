@@ -1,6 +1,6 @@
 #!/bin/python
 """     
-        Asks to append every file with a .md file and remove blank spaces
+        Asks to append every file with a .md and remove blank spaces with dashes
         Do not changes directories 
         Asks every .txt to be converted to .md
 

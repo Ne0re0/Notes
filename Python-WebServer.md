@@ -1,23 +1,30 @@
-Python WebServer
+# Python WebServer
 
-$ sudo python3 http.server 9000 -> 9000 peut être n'importe quel port 
-				-> start the webserv
-				-> Il faut peut être allaow les machines à acceder aux ports : 
-				$sudo ufw allow from 10.10.227.247 proto tcp to any port 9000
+## On premises
+```bash
+python -m http.server 9000
+```
 
-on remote computers : 
+***Il faut peut être allaow les machines à acceder aux ports :*** 
+```bash
+sudo ufw allow from 10.10.227.247 proto tcp to any port 9000
+```
 
-$ wget http://IP/file.name	-> download the file
+## On remote machine : 
 
-We can do port forwarding with ngrok
+```bash
+wget http://IP/file.name
+```
 
-ngrok http <localport where python webserv is running>
+We can forward the local port with ngrok to access it over all the internet.  
+(Require another terminal)
 
-Exemple :
-Local machine :
-sudo python3 http.server 9000
+```bash
 ngrok http 9000
+```
 
-Remote machine :
-
+```bash
 wget <full ngrok given https address>
+```
+
+Ngrok addresses look like : https://4348-2a01-e0a-6e-dd60-4b76-ce7b-d8b-d846.eu.ngrok.io
