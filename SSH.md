@@ -47,6 +47,15 @@ ssh -L <remote active port>:localhost:10000 <username>@<ip>
 ```
 Then, go to firefox and type ```http://localhost:10000```
 
+## Upload to SSH
+```bash
+scp [filename] [username]@[IP of remote machine ]:[directory to upload to on remote machine]
+```
+## Download from SSH
+```bash
+scp remoteuser@remoteIP:path/to/remote/file localdir/
+```
+
 ## KEY GENERATION : 
 ```bash
 mkdir ~/.ssh

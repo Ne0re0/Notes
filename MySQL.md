@@ -42,3 +42,20 @@ MySQL run with root perm :
 	https://www.exploit-db.com/exploits/1518
 	-> get the code on the target and follow instructions
 	
+
+##### Connect to MYSQL remote server
+```bash
+mysql -u [username] -p -h [host ip]
+```
+**View a .sql file (depuis mysql) /!\ il fait être dans le dosser du fichier**
+```bash
+source file.sql
+```
+
+## SQL CHEATSHEET :
+```sql
+SHOW DATABASES;
+USE db_name;
+SHOW TABLES;
+DESCRIBE table_name;
+```

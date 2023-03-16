@@ -4,11 +4,22 @@ Used to hash a document with both a remote machine public key and our public key
 - Use the Diffie Hellman Key Exchange
 - Symetric encryption 
 
+## Encrypt
+
+##### AES Encryt to encrypte any file
+```bash
+gpg --cipher-algo [encryption type] [encryption method] [file to encrypt]
+gpg --cipher-algo AES-256 --symmetric secret.txt
+```
+
+## Decrypt
 ```bash
 gpg --import public_key
 gpg encrypted.message
 cat message.clear
 ```
+
+
 
 ## Crack password
 

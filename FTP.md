@@ -17,4 +17,4 @@ hydra -l username -P /usr/share/wordlists/rockyou.txt <ip> ftp
 ```
 
 ## Useful tips
-1. Check for permissions, sometimes anyone can write or rewrite a file
+1. Check for permissions, sometimes anyone can write or rewrite a file  
