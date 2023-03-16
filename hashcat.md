@@ -12,7 +12,7 @@ hashcat -m 0 -o decrypted.txt -a 0 hash.txt /usr/share/wordlists/rockyou.txt
 ## Crack with any charset (Mask Attack)
 
 ```bash
-hashcat -m 0 -o decrypted.txt -a 3 hash.txt -l ?a?a?a?a?a
+hashcat -m 0 -o decrypted.txt -a 3 hash.txt ?a?a?a?a?a
 ```
 
 Here, we are looking for a 5 password long with ?all charset
@@ -20,7 +20,7 @@ Here, we are looking for a 5 password long with ?all charset
 ```bash
 hashcat -m 0 -o decrypted.txt -a 3 hash.txt password?a
 ```
-Here, we are looking for 
+Here, we are looking for a password starting with "password" and  8 char long  
 
 Doc: https://hashcat.net/wiki/doku.php?id=mask_attack
 

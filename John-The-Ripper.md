@@ -1,83 +1,83 @@
-John The Ripper			-> cracker les hash
-				-> equivalent à hashcat
+# John The Ripper			
+Cracker les hash  
+Equivalent à Hashcat  
 			
-	etapes de cracks :
-		taper le hash sur internet (rainbow table potentielles)
-		identifier le hash -> hashid
-		crack avec john ou hashcat // un outil en ligne e.g. crackstation.net
+## etapes de cracks :
+1. Taper le hash sur internet (rainbow table potentielles)
+2. Identifier le hash 
+3. Crack avec john ou hashcat 
 
+## Determiner le type de hash
+```bash
+hashid hash.txt
+```
+Ne pas négliger les sorties "moins probables"
 
-$python3 hash_id		-> determiner quel algo de hash
-hashid directement
-peut être utile de comparer les 2
--> ne pas négliger les sorties "moins probables"
-
+## Format du crack
+```bash
 john --format=algo --wordlist=rockyou.txt hash.txt
+```
 
 
-Formats :
-	john --list=formats -> liste tous les formats possibles
-	mettre raw dans le nom du format si c'est un hashtype de base
-	-> raw-md5 ou raw-sha1
+## Trouver les formats possibles de John :
+```bash
+john --list=formats
+```
+***Tips :***  
+Mettre raw dans le nom du format si c'est un hashtype de base  
+Exemple : ***raw-md5*** ou ***raw-sha1***
 
-Windows auth hashes :
-	Un hash NTLM se decode avec le format nt -> ce format semble être confondu par les hashid avec du md5
-	
-Linux Auth hashes :
-	found in the /etc/passwd file
-	need to be combined with /etc/shadow file
-	La syntaxe pour le crack
-		-> unshadow /etc/passwd /etc/shadow > outputfile.txt	-> rend le hash comprehensible par john
-		format de ces hashes : sha512crypt
-		-> $ john --format=sha512crypt --wordlist=../Pentest/rockyou.txt unshadowed.txt
+## Windows authentication hashes (SAM File) :
+Un hash NTLM se decode avec le format nt -> ce format semble être confondu par les hashid avec du md5
+
+## Linux authentication hashes :
+Located in /etc/shadow file and needs to be combined with /etc/shadow file  
+***Format : sha512crypt***   
+La syntaxe pour le crack
+- Rendre le hash comprehensible par john
+```bash
+unshadow /etc/passwd /etc/shadow > unshadowed.txt
+```
+- Cracker le hash
+```bash
+john --format=sha512crypt --wordlist=../Pentest/rockyou.txt unshadowed.txt
+```
+
+## Useful flags :
+- ***--single :*** Wordmangling  
+Exemple :  
+```bash
+john --single --format=raw-md5 hash.txt
+```
+Contenu de hash.txt 
+```
+mike:214f456re4f65ref78rfefeff
+```
+Pour ce type de bruteforce, il faut mettre les informations qui nous parraissent utiles (nom,prenom,birthday,phone number,...) devant les :
+
 		
---single :
-	WordMangling -> creer un dico personalisé à l'aide d'informations
-	
-	syntaxe : john --single --format=raw-md5 hash7.txt
-		--single : creer une wordlist personnalisée donc pas de --wordlist
-		--format : evidemment il faut le bon format de hash
-		il faut modifier le hash par mike:214f456re4f65ref78rfefeff
-		où mike est l'info qu'on souhaite rajouté
-		
-Creer ses propres regles de wordmandling
-	cf john the ripper room task 8 thm pour creer la regle
-	
-	on ajoute le flag --rule:RULENAME
-	
-Zip file -> crack password protected zipfile
-	-> tranformer le zip avec zip2john 
-		-> zip2john [zip file] > [output file]
-	-> $john --wordlist=/usr/share/wordlists/rockyou.txt zip_hash.txt
-	
-rar file -> crack password protected rar archive
-	-> tranformer le rar avec rar2john 
-		-> rar2john [rar file] > [output file]
-	-> $john --wordlist=/usr/share/wordlists/rockyou.txt rar_hash.txt
-	
-ssh file -> crack password protected id_rsa file
-	-> tranformer le id_rsa avec ssh2john 
-		-> ssh2john [id_rsa file] > [output file]
-	-> $john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
-	
-GPG/PGP
+### Créer ses propres règles de wordmandling
+cf. john the ripper room task 8 thm pour creer la regle
 
-	$ gpg --import public_key
-	$ gpg encrypted.message
-	$ cat message.clear
+## Convert files to John crackable ones
+Works with a bunch of files format : 
+- Check if "fileformat"2john exists
+### Example
+***Zip file*** -> crack password protected zipfile
+```bash
+zip2john [zip file] > [output file]
+```
+```bash
+john --wordlist=/usr/share/wordlists/rockyou.txt zip_hash.txt
+```
 
-	crack the possible passphrase with john and gpg2john
-	-> tranformer le gpg file avec ssh2john 
-		-> gpg2john [id_rsa file] > [output file]
-	-> $john --wordlist=/usr/share/wordlists/rockyou.txt gpg_hash.txt
-	
+### GPG encrypted files
+1. Tranformer le gpg file avec ssh2john 
+```bash
+pg2john [id_rsa file] > [output file]
+```
+2. Crack the hash
+```bash
+john --wordlist=/usr/share/wordlists/rockyou.txt gpg_hash.txt	
+```
 
-/etc/shadow passwords :
-	# /etc/passwd line
-	root:x:0:0:root:/root:/bin/bash
-
-	# /etc/shadow line
-	root:$6$riekpK4m$uBdaAyK0j9WfMzvcSKYVfyEHGtBfnfpiVbYbzbVmfbneEbo0wSijW1GQussvJSk8X1M56kzgGj8f7DFN1h4dy1:18226:0:99999:7:::
-
-	$ unshadow passwd.txt shadow.txt > unshadowed.txt
-	$ john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
