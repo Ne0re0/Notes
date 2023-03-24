@@ -3,11 +3,15 @@
  	- Used to push mails to servers
 2. ***POP***/***POP3*** -> Post Office Protocole
  	- Used to pull mails from servers
+ 	- Pull everything everytime
 3. ***IMAP*** -> Internet message access protocole
 	- Used to pull mails from servers
+	- Pull only required when required
 ***Standard port : 25***
+
+***Mail transmission process***
 ```
-sender -> Mail -> SMTP -> Internet -> POP/IMAP -> receiver
+sender -> Mail -> SMTP -> Internet Server-> POP/IMAP -> receiver
 ```
 
 ## SMTP

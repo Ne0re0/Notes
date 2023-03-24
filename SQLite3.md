@@ -1,17 +1,22 @@
-SQLITE 3 :
-Exploitation de DataBase
+# SQLITE 3 :
 
-sqlite3 example.db				Ouvrir un fichier (n'a pas l'ai de marcher si le
-						fichier est encrypté
+### Open a .db file
+```bash
+sqlite3 example.db
+```
 
-sqlite > .tables				Pour acceder aux noms des tables
-sqlite > PRAGMA table_info(customers);		Pour accéder aux attributs d'une table
+### Display tables names
+(SQLite3 commands start with a dot (.))  
+```sql
+sqlite > .tables
+```
 
+### Display column names (from a given table)
+```sql
+sqlite > PRAGMA table_info(myTableName);
+```
 
-admettons que cela renvoie la table customers
-sqlite > SELECT * FROM customers;		On peut rentrer des requêtes sql (comme
-						on a appris au lycée letss gooo)
-						
-						
-admin12' UNION Select 1,2,group_concat(table_name) from information_schema.tables where table_schema = 'sqli_three' and table_name like 'pasklenfkje';--
-admin123' UNION SELECT 1,2,3 FROM information_schema.tables WHERE table_schema = 'sqli_three' and table_name like 'a%';--
+### Dump data : 
+```sql
+sqlite > SELECT * FROM customers;
+```

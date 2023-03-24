@@ -1,5 +1,3 @@
-
-
 # ATTACKTIV DIRECTORY		
 ## CRACK THE HASH
 The one i got in this case was : Kerberos 5 AS-REP etype 23
