@@ -17,10 +17,10 @@ e.g. to image/jpeg
 Error if a same named file already exists
 
 ## Magic Number : file signature -> wikipedia
-		on choisi la signature qui correspond à l'extension qu'on veut
-		-> on ajoute autant de A au tout début du file qu'il y a de valeur hexa
-		-> on ouvre le file avec $hexeditor filename
-		-> on modifie les premieres valeurs hexa avec la signature
+1. On choisi la signature qui correspond à l'extension qu'on veut
+2. On ajoute autant de A au tout début du file qu'il y a de valeur hexa
+3. On ouvre le file avec $hexeditor filename
+4. On modifie les premieres valeurs hexa avec la signature
 
 
 
@@ -35,4 +35,4 @@ Error if a same named file already exists
 ### Useful links
 https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Upload%20Insecure%20Files
 ### Things to know
-- The last
+- The last extension is the understood one (except NULLBYTE : %00 which is harder to understand)
