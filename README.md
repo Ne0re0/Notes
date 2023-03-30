@@ -1,8 +1,13 @@
 # Notes :  
-There is just a bunch of notes which I took from my learning routine and I don't want to lose  
-Don't take this repo too seriously  :)  
-You will find a weird mixture of french and english and sometimes just nothing to understand  
-Hope it can be useful for you !  
+There is just a bunch of notes I took from my cybersecurity learning routine and I don't want to lose  
+
+Don't take this repo too seriously  🙂  
+
+
+You will find a strange mix of French and English and sometimes nothing to understand  
+These notes are meant for me to understand 
+
+***Hope it can be useful for you !***  
 
 
 
