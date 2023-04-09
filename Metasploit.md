@@ -1,14 +1,15 @@
-Metasploit / msf
+# Metasploit 
 
-- msfconsole
+```bash
+msfconsole
+```
 
-- tools :
-	- msfvenom
-	- pattern_create } used in exploit dvpt
-	- pattern_offset }
+## Tools :
+- msfvenom
+
 	
-- Modules :
-	(types :  exploits / vulnerability / payloads)
+## Modules :
+(types :  exploits / vulnerability / payloads)
 	
 	- Auxiliary -> any supporting module : scanners / fuzzers / crawlers
 		liste : $ tree -L 1 auxiliary/ 

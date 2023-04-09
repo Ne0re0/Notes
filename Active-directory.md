@@ -29,3 +29,22 @@
 1. Right click and delegate 
 2. Click add
 3. enter the name of the user who you wanna delagate
+
+
+# Attacktiv Directory THM
+Exploiting a vulnerable Domain Controller
+
+## Tools
+Neo4j  
+BloodHound  
+Impacket Suit  
+Tiberius  
+***Autorecon***  
+
+## Enumeration
+***AutoRecon*** on GitHub can automates  
+
+***Nmap***, as always  
+***Enum4Linux*** can also be run  
+`Note that Enum4Linux-ng is a newer and more powerful version of this tool`  
+

