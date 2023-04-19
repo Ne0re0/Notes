@@ -1,6 +1,6 @@
 # TELNET
 
-SSH du pauvre - pas très securisé
+Similar to SSH but not encrypted  
 ```bash
 telnet [ip] [port]
 ```
@@ -8,8 +8,8 @@ telnet [ip] [port]
 Within telnet 
 ***To login***
 Type :  
-USER username  
-PASS password
+USER <username>  
+PASS <password>
 
 
 

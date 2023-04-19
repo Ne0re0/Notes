@@ -67,6 +67,7 @@ cat id_rsa > authorized_keys
 ## START AN SSH SERVER
 
 ```bash
+sudo su
 cd /etc/ssh
 mkdir default-keys
 mv ssh_host_* default-keys

