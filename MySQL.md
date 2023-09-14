@@ -164,13 +164,12 @@ SELECT * FROM wp_users;
 
 ***Create a new user***  
 ```sql
-CREATE USER ridard@localhost 
-    IDENTIFIED BY 'iut' ;
+CREATE USER ridard@localhost IDENTIFIED BY 'mot_de_passe';
 ```
 
 ***Create a new database***  
 ```sql
-CREATE DATABASE bd_ridard ;
+CREATE DATABASE bd_ridard;
 ```
 ***accord de tous les privilèges à l'utilisateur "ridard@localhost" sur les objets de la base "bd_ridard"***  
 

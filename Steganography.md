@@ -20,6 +20,7 @@ La stéganographie est l'art de la dissimulation : son objet est de faire passer
     - pngcheck -vtp7 myImage.png
 - tineye / Reverse image search
 zsteg
+- Thumbnail exif
 __
  
 ## Outils classiques :

@@ -16,7 +16,7 @@ showmount -e [Target-IP]
 Your client’s system needs a directory where all the content shared by the host server in the export folder can be accessed. You can create this folder anywhere on your system. Once you've created this mount point, you can use the "mount" command to connect the NFS share to the mount point on your machine like so:
 
 ```bash
-sudo mount -t nfs [Target-IP]:share /tmp/mount/ -nolock
+sudo mount -t nfs [Target-IP]:/share/directory /tmp/mount/ -nolock
 ```
 
 

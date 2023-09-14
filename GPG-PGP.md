@@ -26,9 +26,9 @@ cat message.clear
 Crack the possible passphrase with john and gpg2john
 
 
-1. Tranformer le gpg file avec ssh2john 
+1. Tranformer le gpg file avec gpg2john 
 ```bash
-pg2john [id_rsa file] > [output file]
+gpg2john [id_rsa file] > [output file]
 ```
 2. Crack the hash
 ```bash
