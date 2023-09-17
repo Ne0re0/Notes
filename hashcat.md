@@ -22,8 +22,12 @@ hashcat -m 0 -o decrypted.txt -a 3 hash.txt password?a
 ```
 Here, we are looking for a password starting with "password" and  8 char long  
 
-Doc: https://hashcat.net/wiki/doku.php?id=mask_attack
+Doc: https://hashcat.net/wiki/doku.php?id=mask_attack  
 
+
+Be carefull, in order to use wordlist for mask attack, it is preferable to use $SALT cracking.  
+So the file containing the hash becomes hash:salt  
+It works as usual
 
 ## Built-in charsets
 
