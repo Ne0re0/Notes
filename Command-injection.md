@@ -4,6 +4,7 @@
 1. Exec
 2. PassThru
 3. System
+4. Eval
 If one of those method is in the code, the website may be vulnerable  
 	
 ## IMPORTANT PAYLOADS to try:
