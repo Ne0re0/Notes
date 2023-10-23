@@ -11,6 +11,10 @@ Looks like a normal text and a key :
 ...
 ```
 
+## Magic hash : 
+In php, strings starting with 0exxxxxxxx are interpreted as 0  
+https://github.com/spaze/hashes
+
 ## XOR 
 
 A XOR B = C

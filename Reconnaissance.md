@@ -59,6 +59,9 @@ CNAME |Canonical Name
 MX |Mail Servers
 SOA |Start of Authority
 TXT |TXT Records
+NS  | DNS authority
+AXFR| DNS Zone Transfer attack
+
 
 ***Dig***  
 For more advanced DNS queries and additional functionality, you can use `dig`  
@@ -75,6 +78,12 @@ dig @1.1.1.1 tryhackme.com MX
 ```
 
 ***Dig returns more info than nslookup***
+
+Note :   
+Dig can be used in zone transfer attacks
+```bash
+dig axfr @Server DOMAIN
+```
 
 ### DNSDumpster
 NSLookup and Dig, cannot find subdomains on their own.  
@@ -141,12 +150,14 @@ ping hostname
 ping -s packet_size -c ping_number hostname
 ```
 
-Note : MS Windows Firewall blocks ping by default
+Note : 
+- MS Windows Firewall blocks ping by default
+- A ping ttl is commonly set to 128 bits on windows servers but 64 on Linux
 
 Why we didn’t get a ping reply:
 - The destination computer is not responsive; (still booting up, turned off, the OS has crashed)
 - It is unplugged from the network, or there is a faulty network device across the path.
-- A firewall is configured to block such packets. The firewall might be a piece of software running on the system itself or a separate network appliance. 
+- A firewall is configured to block such packets.
 - Your system is unplugged from the network.
 
 ### Traceroute

@@ -199,3 +199,22 @@ Add-Computer -DomainName xyz.com -Credential xyz\Administrator -Force -Restart
 The computer should restart. You can now log in as 'other user' and administrator on the XYZ domain.
 
 ## Take a Snapshot
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Add users
+

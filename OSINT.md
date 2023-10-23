@@ -1,61 +1,67 @@
-OSINT : Google is ur friend
+# Open Source Intelligence
 
 https://osintframework.com/
 
 ## GEOSINT
 
-https://overpass-turbo.eu/ + chatGPT pour le code
+https://overpass-turbo.eu/ + GPT for the code
 
-## Telephone
+## Phones
 
 Pages Jaunes
 https://fr.wikipedia.org/wiki/Indicatif_téléphonique_local_en_France
 
 ## Images :
 
-Analyse Visuelle grossière
+Visual analysis
 
 ```bash
 file
-binwalk / foremost / scalpel
 exiftool
+strings
+binwalk / foremost / scalpel
 steghide
 stegcracker
 ```
-reverse image search with google
-reverse image search with TinEye or Yandex
-reverse image search on weird things such as buildings, or something recognizable
+- Reverse image search with google
+- Reverse image search with TinEye or Yandex
+- Reverse image search on weird things such as buildings, or something recognizable
 
 ## Videos :
-Analyse visuelle (topologie / nom de batiments / c'est Geoguessr)
-Reverse image sur chaque frame de la vidéo
+Visual analysis (topology / building names / like Geoguessr)
+Reverse image search on each frames
 
 
-## Emails :
+## Mails :
 ```bash
 mosint example@gmail.com
 holehe example@gmail.com
 ```
 
-## Pseudos / Personnes
+## Usernames
 https://whatsmyname.app/
 
 
-
-## Instagram
+## SocMInt
 Osintgram (wasn't working when i wrote that)
 
 
-## Automobile
+## Cars
 
 https://evaluer-chauffeur.fr
 https://www.cartegrise.com
 
-## WIFI
+## WI-FI
 
 http://wigle.net 
 
-## Divers
+## Links
+
+Follow redirects  
+https://wheregoes.com/ 
+
+## Others
 
 https://haveibeenpwned.com/  
+
 

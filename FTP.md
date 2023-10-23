@@ -1,8 +1,9 @@
 # FTP : File Transfer protocole
 
-***Non crypté***  
-***Login anonymous possible sans mot de passe***
+***Communication in clear text***  
+***Anonymous login can be found***
 
+Usage :
 ```bash
 ftp <ip>
 ```
@@ -11,10 +12,17 @@ $ username : anonymous
 $ password : 
 ```
 
-## possibilité de brute force le mot de passe avec Hydra
+## Brute Force login
 ```bash
 hydra -l username -P /usr/share/wordlists/rockyou.txt <ip> ftp
 ```
 
-## Useful tips
+## CheatSheet
+```ftp
+prompt off 	# Disable asking when dowloading
+binary 		# Set download mode to binary (to avoid corruption) or ASCII
+mget file 	# Dowload the file
+```
+## Tips
 1. Check for permissions, sometimes anyone can write or rewrite a file  
+2. FTP can be in Passive or Active Mode, switching can help to bypass firewalls

@@ -1,32 +1,32 @@
 # SMB
-***Samba sous linux***
-Ports par défauts : ***139*** /***445***  
+***Samba***
+Default ports : ***139*** /***445***  
 
-## Accessibility w/ smbclient
-```bash
-smbclient \\\\ip\\dossier_partagé
-smbclient \\\\ip\\dossier_partagé --user username
+## SMBClient CheatSheet
+```bash 
+smbclient \\\\<IP>\\<SHARE> 						# Access as guest/anonymous
+smblcient \\\\<IP>\\<SHARE>
+smbclient \\\\<IP>\\<SHARE> --user <USER> 		# Access as username
+smbclient \\\\<IP>\\<SHARE> --user <USER> --password <PASS>
+smbclient -L \\\\<IP>\\<SHARE> --user username 	# List shares
+
+# In the smb prompt
+more file.txt
+mget file.txt
+dir
 ```
 
-***Mapper les shares***
-```bash
-smbclient -L \\\\ip\\dossier_partagé --user username
-```
-## Useful commands
-- cd 
-- more file.txt -> cat the file
-- mget file.txt  -> download the file
-
-
-## Enumeration
-Enumeration avec ***Enum4linux***
+## Enum4Linux
 
 ```bash
-enum4linux <ip>
+enum4linux <IP> 		
+enum4linux <IP> -u <USER> -p <PASS>	
 ```
 
-***Useful flags***  
-- -p pour un port spécifique
+## SMBMap
 
+``` bash
+smbmap -H IP -u "username" -p "password"
+```
 
 

@@ -4,7 +4,9 @@ Reverse engineer means understand how a binary works.
 Binaries coulds be compiled c, java, ...   
 
 ## Tools
-
+### Web
+https://sandbox.pikker.ee/   
+https://www.malware.ee/  
 
 ### Ghidra
 Ghidra is an open source project from the NSA, usually used because of it's capability to take a binary and make it pseudo-code like.
