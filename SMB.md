@@ -26,7 +26,10 @@ enum4linux <IP> -u <USER> -p <PASS>
 ## SMBMap
 
 ``` bash
-smbmap -H IP -u "username" -p "password"
+smbmap -H <IP> -u "username" -p "password"
 ```
 
-
+## CrackMapExec
+```bash
+crackmapexec smb <IP> -u 'username' -p 'password' --shares
+```

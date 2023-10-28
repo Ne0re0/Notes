@@ -1,6 +1,7 @@
 # Domain Name Service (DNS)
 
 
+
 ## Flaws
 ### Zone Transfer
 

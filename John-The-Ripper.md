@@ -81,3 +81,9 @@ pg2john [id_rsa file] > [output file]
 john --wordlist=/usr/share/wordlists/rockyou.txt gpg_hash.txt	
 ```
 
+## Word Mangling Wordlist Generation
+
+In this case, we suppose that we have retrieved real names and we want to generate stuff from those names : 
+```bash
+john --wordlist=first_last_names.txt --rules=Login-Generator-i --stdout > usernames.txt
+```
