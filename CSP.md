@@ -17,14 +17,29 @@ Sanitize javascript code execution to limit XSS risks
 
 document.write()
 insertAdjacentHTML(),
-.innerHtml, 
-.outerHTML
+document.body.innerHtml, 
+document.body.outerHTML
+
 
 eval()
 
-setTimeout()
+setTimeout() is very useful when something require the entire page to load before the code is being executed
+```js
+setTimeout(function(){
+	//code here
+},1000); //Time in ms here
+```
 setInterval()
 Dans ces deux méthodes, on peut passer en paramètre une fonction qui sera interprété comme un callback classique
 
 Function('code')
 .prototype.constructor('code')
+
+## Redirections : 
+
+```js
+window.location='http://newlocation.com'
+```
+
+## Bypass JSONP : 
+JSONBee has pre created payloads : https://github.com/zigoo0/JSONBee/blob/master/jsonp.txt 

@@ -18,7 +18,7 @@ sinon :  <iframe src="javascript:alert(`xss`)">
 
 ### Get hostname
 In Javascript window.location.hostname will show your hostname :
-<script>alert(“window.location.hostname”)</script>
+<script>alert(window.location.hostname)</script>
 
 ### Get cookies
 Cookies :
@@ -38,7 +38,7 @@ Cookies :
 - A mini local port scanner (more information on this is covered in the TryHackMe XSS room).
 
 
-# Reflexcted XSS : Client-Side -> URL bar
+# Reflected XSS : Client-Side -> URL bar
 
 http://10.10.186.74/#/track-result?id=<iframe src="javascript:alert(`xss`)">
 

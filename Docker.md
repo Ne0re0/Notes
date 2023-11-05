@@ -33,12 +33,13 @@ sudo docker build -t getting-started .
 
 4. Run the docker
 ```bash
-sudo docker run -dp 3000:3000 getting-started
+sudo docker run -dp 4444:80 getting-started
 ```
 - `-d` is used to run the docker in the background
 - `-p` is used to create a mapping between local port and docker port
 - `getting-started` is the docker name
-
+- `8080` local port
+- `80` docker exposed port
 5. Wait a second 
 
 ## Command Sheat cheet
