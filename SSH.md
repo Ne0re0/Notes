@@ -22,9 +22,12 @@ hydra -t 16 -l USERNAME -P /usr/share/wordlists/rockyou.txt -vV 10.10.230.250 ss
 ```
 
 
-## ERROR handling :
-If you get an error saying ```Unable to negotiate with <IP> port 22: no matching how to key 
-	type found. Their offer: ssh-rsa, ssh-dss this is because OpenSSH have deprecated ssh-rsa.```  
+## Error handling :
+If you get an error saying 
+```
+Unable to negotiate with <IP> port 22: no matching how to key 
+	type found. Their offer: ssh-rsa, ssh-dss this is because OpenSSH have deprecated ssh-rsa.
+```  
 Then, add ```-oHostKeyAlgorithms=+ssh-rsa``` to your command to connect.
 
 

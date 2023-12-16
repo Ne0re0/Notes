@@ -24,4 +24,38 @@ The user called Neoreo can be found in the OU System in the OU IT.
 | 		
 |-- ...
 ```
+## Curl
+### Null bind
+```bash
+curl "ldap://test.local:54013/dc=test,dc=local"
+```
+## LDAPsearch
+
+#### Null bind / anonymous authentication
+- Specify -x to use classic auth but do not specify -u neither -w
+```bash
+ldapsearch -LLL -x -H ldap://test.local:port -b "" -s base '(&)' +
+```
+
+#### Cheat sheet
+
+| tag | values | meaning |
+|:--------|:----------|:-------|
+| -H | ldap://test.local| Specify the host
+| -b | `OU=Users,DC=test,DC=local` | Specify the base of the request |
+| -s | base, one, sub, children  | Specify the scope of the request |
+| -x| | Use simple authentication |
+| -w | p@ssw0rd | Specify the password |
+| -u |neoreo.admin | Specify the username
+| -LLL | | Minimize results
+| -p | | port
+
+
+
+
+## Tip
+- (&) filter is allowing everything
+
+
+
 

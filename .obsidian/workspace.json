@@ -1,0 +1,242 @@
+{
+  "main": {
+    "id": "2c528dc7d02df7c0",
+    "type": "split",
+    "children": [
+      {
+        "id": "ef04e4f5263def3c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a295ffa0ce377504",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "XSS.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "255741a8de34c8e9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Steganography.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e8a7bfd31fc9bcd0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Windows/ASREP-Roasting.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4eb15df9665c0786",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Windows/Get-ADUser.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "0aaaf6b9f37e0ade",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ldap2json.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "78dac10ca62cc34d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Flipper.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "066aa4e4773e9685",
+    "type": "split",
+    "children": [
+      {
+        "id": "306850d22a645fa1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7cc2e4ef30c3dfc9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "92c49940ec47928c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "de299cd32ca2778a",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "13fdd5dcfa2ae788",
+    "type": "split",
+    "children": [
+      {
+        "id": "597314521e1bc462",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6523d0dfca0c5fc9",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Flipper.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "2f31261e2745e319",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Flipper.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "aefc1c16dad9862f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "dfe3d15ecf5200b6",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Flipper.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "78dac10ca62cc34d",
+  "lastOpenFiles": [
+    "ldap2json.md",
+    "Flipper.md",
+    "Windows/Get-ADUser.md",
+    "Untitled.md",
+    "Windows/ASREP-Roasting.md",
+    "Windows/Kerberoast.md",
+    "LDAP.md",
+    "Reverse.md",
+    "Prompt-Injection.md",
+    "Steganography.md",
+    "Telnet.md",
+    "SSRF.md",
+    "SQLi.md",
+    "SQLite3.md",
+    "SMB.md",
+    "Shells.md",
+    "RSA.md",
+    "Redis.md",
+    "Red-Team.md",
+    "XXE.md",
+    "Pwn.md",
+    "SSH.md",
+    "Docker.md",
+    "XSS.md",
+    "CSRF.md",
+    "CSP.md",
+    "images/sortie_spray_kerbrute.png",
+    "images/kerberos_authentication.png",
+    "images/mimikatz_lsadump.png"
+  ]
+}

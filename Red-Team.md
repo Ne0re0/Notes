@@ -70,18 +70,18 @@ Appendix	| Any further information from preceding subsections
 
 Each team will have it's methodology but here are four common type of plannig
 
-|Type of Plan	| Explanation of Plan	|Plan Contents
+|Type of Plan	| Explanation of Plan	|Plan Contents|
 |:----|:------|:--------|
-Engagement Plan	| An overarching description of technical requirements of the red team. | CONOPS (Concept of Operations, Resource and Personnel Requirements, Timelines
-Operations Plan	| An expansion of the Engagement Plan. Goes further into specifics of each detail.| Operators, Known Information, Responsibilities, etc.
-Mission Plan	| The exact commands to run and execution time of the engagement.| Commands to run, Time Objectives, Responsible Operator, etc.
-Remediation Plan| Defines how the engagement will proceed after the campaign is finished.| Report, Remediation consultation, etc.
+|Engagement Plan	| An overarching description of technical requirements of the red team. | CONOPS (Concept of Operations, Resource and Personnel Requirements, Timelines |
+|Operations Plan	| An expansion of the Engagement Plan. Goes further into specifics of each detail.| Operators, Known Information, Responsibilities, etc.
+|Mission Plan	| The exact commands to run and execution time of the engagement.| Commands to run, Time Objectives, Responsible Operator, etc.
+|Remediation Plan| Defines how the engagement will proceed after the campaign is finished.| Report, Remediation consultation, etc.
 
 https://redteam.guide/docs/checklists/red-team-checklist/
 
 
 ***CONOPS (CONcept of OPerationS)***  
-It details a high-level overview of the proceedings of an engagement (Semi-Technical). Written as a summary
+It details a high-level overview of the proceedings of an engagement (Semi-Technical). Written as a summary.
 
 ***Components that should be included in a CONOPS***  
 - Client Name

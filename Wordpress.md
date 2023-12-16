@@ -13,9 +13,9 @@ hydra -L userlist.txt -p randompassword $IP http-post-form "/wp-login/:log=^USER
 
 ## Reverse shell (Authenticated)
 
-### Metsaploit
+### Metasploit
 ...
-### Template (404.php injection)
+### RCE in templates (404.php injection)
 1. Go to appearance
 2. Go to editor
 3. Select 404.php

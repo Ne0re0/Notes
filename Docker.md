@@ -33,7 +33,7 @@ sudo docker build -t getting-started .
 
 4. Run the docker
 ```bash
-sudo docker run -dp 4444:80 getting-started
+sudo docker run -dp 8080:80 getting-started
 ```
 - `-d` is used to run the docker in the background
 - `-p` is used to create a mapping between local port and docker port
@@ -50,6 +50,7 @@ sudo docker stop DOCKER_ID
 sudo docker rm DOCKER_ID
 sudo docker rm -f DOCKER_ID # force remove
 sudo docker image ls # list dockers
+sudo docker exec -it DOCKER_PS_ID /bin/bash # Get into the docker's shell
 ```
 
 
@@ -63,4 +64,6 @@ sudo docker image ls # list dockers
 	1. sudo docker login -u USERNAME
 	2. sudo docker tag DOCKER_NAME USERNAME/TAG # Give the docker a tag
 	3. docker push YOUR-USER-NAME/TAG
+
+
 
