@@ -1,17 +1,16 @@
 # SSH
 
 ## Remote login :
-### How it's supposed to be :
+- With creds
 ```bash
 ssh username@ip
 # require password
 ```
-
-### How it can also be :
+- With private key
 ```bash
 # require id_rsa private key
 chmod 600 id_rsa
-ssh -i <private id_rsa file> <username>@<ip>
+ssh -i id_rsa USERNAME@IP
 # doesn't require a password
 ```
 
@@ -25,10 +24,10 @@ hydra -t 16 -l USERNAME -P /usr/share/wordlists/rockyou.txt -vV 10.10.230.250 ss
 ## Error handling :
 If you get an error saying 
 ```
-Unable to negotiate with <IP> port 22: no matching how to key 
-	type found. Their offer: ssh-rsa, ssh-dss this is because OpenSSH have deprecated ssh-rsa.
+Unable to negotiate with <IP> port 22: no matching how to key type found. 
+Their offer: ssh-rsa, ssh-dss this is because OpenSSH have deprecated ssh-rsa.
 ```  
-Then, add ```-oHostKeyAlgorithms=+ssh-rsa``` to your command to connect.
+Then, add `-oHostKeyAlgorithms=+ssh-rsa` to your command to connect.
 
 
 ## Useful commands :
@@ -46,17 +45,20 @@ ss -tunlp
 
 On premises we can forward the remote port to our localhost 10,000 port
 ```bash
-ssh -L <remote active port>:localhost:10000 <username>@<ip>
+ssh -L LOCALPORT:localhost:REMOTEPORT username@ip
 ```
-Then, go to firefox and type ```http://localhost:10000```
+Then, go to firefox and type 
+```
+http://localhost:10000
+```
 
 ## Upload to SSH
 ```bash
-scp [filename] [username]@[IP of remote machine ]:[directory to upload to on remote machine]
+scp FILETOUPLOAD USERNAME@IP:~/TARGETDIR/
 ```
 ## Download from SSH
 ```bash
-scp remoteuser@remoteIP:path/to/remote/file localdir/
+scp USERNAME@IP:~/FILETODOWNLOAD ~/TARGETDIR/
 ```
 
 ## KEY GENERATION : 
