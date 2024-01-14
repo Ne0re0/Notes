@@ -1,6 +1,7 @@
 # PHP Filter Bypass
 
-## preg_replace('search','replacewith','stringtovalidate')
+## preg_replace
+`preg_replace('search','replacewith','stringtovalidate')`
 ```php
 $variable = preg_replace('foxchallenge','','foxchallfoxchallengeenge')
 ```

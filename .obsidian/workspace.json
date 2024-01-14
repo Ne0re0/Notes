@@ -4,95 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "ef04e4f5263def3c",
+        "id": "ba7aa698e53c9aaf",
         "type": "tabs",
         "children": [
           {
-            "id": "a295ffa0ce377504",
+            "id": "738bd6d9445ccf10",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "XSS.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "255741a8de34c8e9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Steganography.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e8a7bfd31fc9bcd0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Windows/ASREP-Roasting.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "4eb15df9665c0786",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Windows/Get-ADUser.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "0aaaf6b9f37e0ade",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ldap2json.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "78dac10ca62cc34d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Reverse.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "6d5e033273d10141",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Assembly.md",
+                "file": "RSA.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 6
+        ]
       }
     ],
     "direction": "vertical"
@@ -158,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Assembly.md",
+                "file": "RSA.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -175,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Assembly.md",
+                "file": "RSA.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -198,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Assembly.md"
+                "file": "RSA.md"
               }
             }
           }
@@ -219,15 +146,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "6d5e033273d10141",
+  "active": "738bd6d9445ccf10",
   "lastOpenFiles": [
+    "TMUX.md",
+    "Post-Exploitation.md",
+    "PHP-Filter-Bypass.md",
+    "OSINT.md",
+    "Ngrok.md",
+    "NFS.md",
+    "Assembly.md",
     "Reverse.md",
     "Buffer-Overflow.md",
     "Upload-Bypass.md",
     "Wireshark.md",
     "Tailscale.md",
-    "Assembly.md",
-    "Untitled.md",
     "Docker.md",
     "Mail-Protocols.md",
     "Metasploit.md",
@@ -242,11 +174,6 @@
     "Prompt-Injection.md",
     "Steganography.md",
     "Telnet.md",
-    "SSRF.md",
-    "SQLi.md",
-    "SQLite3.md",
-    "SMB.md",
-    "Shells.md",
     "images/sortie_spray_kerbrute.png",
     "images/kerberos_authentication.png",
     "images/mimikatz_lsadump.png"
