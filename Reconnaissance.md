@@ -40,27 +40,29 @@ Find the IP address of a domain name using `nslookup`
 ```bash
 nslookup google.com
 ```
+
 ```bash
 nslookup OPTIONS DOMAIN_NAME SERVER 
 nslookup -type=A tryhackme.com 1.1.1.1
 ```
-Parameter | Utility
-|:--------|:-------|
+
+| Parameter | Utility |
+| ---- | ---- |
 |OPTIONS |contains the query type as shown in the table below|
-DOMAIN_NAME | is the domain name you are looking up.
-SERVER | is the DNS server that you want to query. You can choose any local or public DNS server to query. Cloudflare offers 1.1.1.1 and 1.0.0.1, Google offers 8.8.8.8 and 8.8.4.4, and Quad9 offers 9.9.9.9 and 149.112.112.112
+|DOMAIN_NAME | is the domain name you are looking up.
+|SERVER | is the DNS server that you want to query. You can choose any local or public DNS server to query. Cloudflare offers 1.1.1.1 and 1.0.0.1, Google offers 8.8.8.8 and 8.8.4.4, and Quad9 offers 9.9.9.9 and 149.112.112.112
 
 
-|Query type | Result
-|:---|:---|
-A |IPv4 Addresses
-AAAA |IPv6 Addresses
-CNAME |Canonical Name
-MX |Mail Servers
-SOA |Start of Authority
-TXT |TXT Records
-NS  | DNS authority
-AXFR| DNS Zone Transfer attack
+|Query type | Result |
+|:---:|:---:|
+|A |IPv4 Addresses
+|AAAA |IPv6 Addresses
+|CNAME |Canonical Name
+|MX |Mail Servers
+|SOA |Start of Authority
+|TXT |TXT Records
+|NS  | DNS authority
+|AXFR| DNS Zone Transfer attack
 
 
 ***Dig***  
@@ -68,10 +70,12 @@ For more advanced DNS queries and additional functionality, you can use `dig`
 ```bash
 dig google.com
 ```
+
 ```bash
 dig DOMAIN_NAME TYPE # dig types are equals to nslookup types
 dig thmlabs.com TXT
 ```
+
 ```bash
 dig @SERVER DOMAIN_NAME TYPE # dig types are equals to nslookup types
 dig @1.1.1.1 tryhackme.com MX
@@ -109,8 +113,6 @@ We can discover :
 - Hosting company
 - Geographic location
 - Server type and version
-
-
 
 
 ## Active Recon
@@ -193,7 +195,7 @@ And it can act as a server that listen on a port number
 nc hostname port
 ```
 
-***Server : ***
+***Server :***
 ```bash
 nc -lvnp 1234
 while true; do nc -lvnp 1234 ; done # Re-Opens a nc as soon as client disconnect

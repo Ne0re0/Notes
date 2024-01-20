@@ -31,14 +31,14 @@ It works as usual
 
 ## Built-in charsets
 
-- ?l = abcdefghijklmnopqrstuvwxyz
-- ?u = ABCDEFGHIJKLMNOPQRSTUVWXYZ
-- ?d = 0123456789
-- ?h = 0123456789abcdef
-- ?H = 0123456789ABCDEF
-- ?s = «space»!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
-- ?a = ?l?u?d?s
-- ?b = 0x00 - 0xff
+- ?l = `abcdefghijklmnopqrstuvwxyz`
+- ?u = `ABCDEFGHIJKLMNOPQRSTUVWXYZ`
+- ?d = `0123456789`
+- ?h = `0123456789abcdef`
+- ?H = `0123456789ABCDEF`
+- ?s = `«space»!"#$%&'()*+,-./:;<=>?@[\]^_\{|}~`
+- ?a = `?l?u?d?s`
+- ?b = `0x00 - 0xff`
 
 
 ## Find hash types

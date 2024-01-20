@@ -17,8 +17,6 @@ https://github.com/spaze/hashes
 
 ## XOR 
 
-A XOR B = C
-
-A XOR C = B
-
-B XOR C = A
+A XOR B = C  
+A XOR C = B  
+B XOR C = A  

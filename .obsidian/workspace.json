@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "ba7aa698e53c9aaf",
+        "id": "5051fd457b53a1ef",
         "type": "tabs",
         "children": [
           {
-            "id": "738bd6d9445ccf10",
+            "id": "350f4d37907293e6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "RSA.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "RSA.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "RSA.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "RSA.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -146,34 +138,40 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "738bd6d9445ccf10",
+  "active": "350f4d37907293e6",
   "lastOpenFiles": [
+    "XML.md",
+    "Cryptography/Crypto.md",
+    "Web-Pentesting/CSP.md",
     "TMUX.md",
-    "Post-Exploitation.md",
-    "PHP-Filter-Bypass.md",
-    "OSINT.md",
+    "Tailscale.md",
+    "Steganography.md",
+    "Shells.md",
+    "Red-Team.md",
+    "Prompt-Injection.md",
+    "Windows/Post-Exploitation.md",
+    "Priv-Esc-Linux.md",
+    "Hydra.md",
+    "Hugo.md",
+    "Cronjobs.md",
+    "Networks",
+    "Databases",
+    "Binaries",
+    "Protocols",
+    "Cryptography/Polybius.md",
+    "Cryptography/Hashcat.md",
+    "Cryptography/GPG-PGP.md",
+    "Web-Pentesting/Command-injection.md",
+    "Web-Pentesting/XXE.md",
+    "Web-Pentesting/XSS.md",
+    "Databases/Redis.md",
+    "Reconnaissance.md",
+    "Networks/Radio-Frequencies.md",
     "Ngrok.md",
     "NFS.md",
-    "Assembly.md",
-    "Reverse.md",
-    "Buffer-Overflow.md",
-    "Upload-Bypass.md",
-    "Wireshark.md",
-    "Tailscale.md",
-    "Docker.md",
-    "Mail-Protocols.md",
-    "Metasploit.md",
-    "MySQL.md",
-    "Hashcat.md",
-    "Flipper.md",
-    "ldap2json.md",
-    "Windows/Get-ADUser.md",
-    "Windows/ASREP-Roasting.md",
-    "Windows/Kerberoast.md",
-    "LDAP.md",
-    "Prompt-Injection.md",
-    "Steganography.md",
-    "Telnet.md",
+    "Networks/NetworkSniffing.md",
+    "Web-Pentesting",
+    "Cryptography",
     "images/sortie_spray_kerbrute.png",
     "images/kerberos_authentication.png",
     "images/mimikatz_lsadump.png"

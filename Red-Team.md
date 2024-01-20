@@ -16,32 +16,31 @@
 	- Define a target / IP range
 		- Example : 10.0.0.8/20
 
-Example :
-```
-Objectives:
+### Example :
 
-    Identify system misconfigurations and network weaknesses.
-        Focus on exterior systems.
-    Determine the effectiveness of endpoint detection and response systems.
-    Evaluate overall security posture and response.
-        SIEM and detection measures.
-        Remediation.
-        Segmentation of DMZ and internal servers.
-    Use of white cards is permitted depending on downtime and length.
-    Evaluate the impact of data exposure and exfiltration.
+##### Objectives:
 
-Scope:
+- Identify system misconfigurations and network weaknesses.
+    - Focus on exterior systems.
+    - Determine the effectiveness of endpoint detection and response systems.
+   -  Evaluate overall security posture and response.
+        - SIEM and detection measures.
+        - Remediation.
+        - Segmentation of DMZ and internal servers.
+   -  Use of white cards is permitted depending on downtime and length.
+   -  Evaluate the impact of data exposure and exfiltration.
 
-    System downtime is not permitted under any circumstances.
-        Any form of DDoS or DoS is prohibited.
-        Use of any harmful malware is prohibited; this includes ransomware and other variations.
-    Exfiltration of PII is prohibited. Use arbitrary exfiltration data.
-    Attacks against systems within 10.0.4.0/22 are permitted.
-    Attacks against systems within 10.0.12.0/22 are prohibited.
-    Bean Enterprises will closely monitor interactions with the DMZ and critical/production systems.
-        Any interaction with "*.bethechange.xyz" is prohibited.
-        All interaction with "*.globalenterprises.thm" is permitted.
-```
+##### Scope:
+
+- System downtime is not permitted under any circumstances.
+	- Any form of DDoS or DoS is prohibited.
+	- Use of any harmful malware is prohibited; this includes ransomware and other variations.
+- AExfiltration of PII is prohibited. Use arbitrary exfiltration data.
+- Attacks against systems within 10.0.4.0/22 are permitted.
+- Attacks against systems within 10.0.12.0/22 are prohibited.
+- Bean Enterprises will closely monitor interactions with the DMZ and critical/production systems.
+	- Any interaction with "\*.bethechange.xyz" is prohibited.
+	- All interaction with "\*.globalenterprises.thm" is permitted.
 
 ### Rules of Engagements
 
@@ -50,21 +49,21 @@ Document that is legally binding outline of the client objectives and scope with
 - RoE are criticals since it is legally binding contracts
 
 
-|Section Name	|Section Details|
-|:-----|:------|
-Executive Summary	| Overarching summary of all contents and authorization within RoE document
-Purpose	| Defines why the RoE document is used
-References	| Any references used throughout the RoE document (HIPAA, ISO, etc.)
-Scope	| Statement of the agreement to restrictions and guidelines
-Definitions	| Definitions of technical terms used throughout the RoE document
-Rules of Engagement and Support Agreement	| Defines obligations of both parties and general technical expectations of engagement conduct
-Provisions	| Define exceptions and additional information from the Rules of Engagement
-Requirements, Restrictions, and Authority 	| Define specific expectations of the red team cell
-Ground Rules	| Define limitations of the red team cell's interactions
-Resolution of Issues/Points of Contact	| Contains all essential personnel involved in an engagement
-Authorization	| Statement of authorization for the engagement
-Approval 	| Signatures from both parties approving all subsections of the preceding document
-Appendix	| Any further information from preceding subsections
+| Section Name | Section Details |
+| :--- | :--- |
+| Executive Summary | Overarching summary of all contents and authorization within RoE document |
+| Purpose | Defines why the RoE document is used |
+| References | Any references used throughout the RoE document (HIPAA, ISO, etc.) |
+| Scope | Statement of the agreement to restrictions and guidelines |
+| Definitions | Definitions of technical terms used throughout the RoE document |
+| Rules of Engagement and Support Agreement | Defines obligations of both parties and general technical expectations of engagement conduct |
+| Provisions | Define exceptions and additional information from the Rules of Engagement |
+| Requirements, Restrictions, and Authority | Define specific expectations of the red team cell |
+| Ground Rules | Define limitations of the red team cell's interactions |
+| Resolution of Issues/Points of Contact | Contains all essential personnel involved in an engagement |
+| Authorization | Statement of authorization for the engagement |
+|  | Signatures from both parties approving all subsections of the preceding document |
+| Appendix	| Any further information from preceding subsections
 
 ### Planning
 
@@ -95,23 +94,22 @@ It details a high-level overview of the proceedings of an engagement (Semi-Techn
 ***Resource plan***  
 The resource plan is the second document of the engagement plan, detailing a brief overview of dates, knowledge required (optional), resource requirements.  
 Example :
-```
-Header
-    Personnel writing
-    Dates
-    Customer
-Engagement Dates
-    Reconnaissance Dates
-    Initial Compromise Dates
-    Post-Exploitation and Persistence Dates
-    Misc. Dates
-Knowledge Required (optional)
-    Reconnaissance
-    Initial Compromise
-    Post-Exploitation
-Resource Requirements
-    Personnel
-    Hardware
-    Cloud
-    Misc.
-```
+
+- Header
+    - Personnel writing
+    - Dates
+    - Customer
+- Engagement Dates
+    - Reconnaissance Dates
+    - Initial Compromise Dates
+    - Post-Exploitation and Persistence Dates
+    - Misc. Dates
+- Knowledge Required (optional)
+    - Reconnaissance
+    - Initial Compromise
+    - Post-Exploitation
+- Resource Requirements
+    - Personnel
+    - Hardware
+    - Cloud
+    - Misc.

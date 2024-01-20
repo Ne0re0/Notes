@@ -5,6 +5,6 @@
 
 ## Tools
 - GNU Radio 
-	```bash
-	gnuradio-companion
-	```
+```bash
+gnuradio-companion
+```

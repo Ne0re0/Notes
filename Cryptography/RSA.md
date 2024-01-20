@@ -11,7 +11,8 @@ RSA is an asymetric encryption :
 | n | p*q |
 | e | exposant (should not e too large : often 65537 as it's a primary number and that makes e respects all the rules) |
 | phi(n) | (p-1)*(q-1) |
-| d | e**-1 [phi(n)] |
+| d | e<sup>-1</sup> % phi(n)]        or         pow(e, -1, phi(n)) |
+
 
 ## Generate 
 In bash :
@@ -205,6 +206,36 @@ def get_factor(n:int,primes:list) :
 404 content not found :)
 
 # Attack the private key
+
+A pem private key is composed of (in order)
+
+| Element | Definition |
+| :--: | ---- |
+| version |  |
+| N | p\*q |
+| e |  |
+| d | e<sup>-1</sup> % phi(n) |
+| p |  |
+| q |  |
+| d_p | d % (p-1) |
+| d_q | d % (q-1) |
+| q_inv | q<sup>-1</sup> % p |
+| other prime infos |  optional |
+
+Note : .pem files are base64 encoded, so convert it from base64 to hex
+Private key numbers are written under `asn1` rules
+
+
+#### ASM1 rules
+Numbers begin with 0x02
+The byte that follows tells the length of the actual size value
+
+| Starter | Size of the length | length | Number |
+| :--: | ---- | ---- | ---- |
+| 02 | 0X means the number length is X | avoided here | X |
+|  | 8X means size of the length is X bytes | X bytes | length value bytes |
+|  |  |  |  |
+
 
 ## Partially retrieved p and q
 ...

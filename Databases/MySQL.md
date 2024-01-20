@@ -64,7 +64,7 @@ run
 It returns all usernames and passwords hashes
 
 ### Crash hashes
-If you don't know what to do, please check [John-The-Ripper.md](./John-The-Ripper.md) and [hashcat.md](./hashcat.md)
+If you don't know what to do, please check [John-The-Ripper.md](John-The-Ripper.md) and [hashcat.md](Hashcat.md)
 
 Hash example : ```carl:*EA031893AA21444B170FC2162A56978B8CEECE18```
 ```bash
