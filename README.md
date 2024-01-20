@@ -1,15 +1,9 @@
-# Notes :  
-There is just a bunch of notes I took from my cybersecurity learning routine and I don't want to lose  
+# Cybersecurity Learning Notes
 
-Don't take this repo too seriously  🙂  
+This repository contains a collection of notes from my cybersecurity learning routine, and I don't want to lose them.
 
+**Note:** Don't take this repository too seriously 😄
 
-You will find a strange mix of French and English and sometimes nothing to understand  
-These notes are meant for me to understand 
+You'll encounter a peculiar mix of French and English, and sometimes there might be content that's not easy to understand. These notes are primarily intended for my own comprehension.
 
-***Hope it can be useful for you !***  
-
-
-
-
-
+I hope you find them useful too!
