@@ -20,7 +20,7 @@ sekurlsa::tickets /export
 This will export the ticket (.kirbi) to the directory you're in
 
 
-## PASS THE TICKET
+## Pass the ticket
 If you leave mimikatz, you will see that there are tickets in the directory. 
 Copy the one that is interesting for you and return to mimiktatz
 

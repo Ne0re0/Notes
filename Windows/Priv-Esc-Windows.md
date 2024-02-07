@@ -160,11 +160,11 @@ The file is ambiguous.
 Example : the path is C:\MyPrograms\Disk Sorter Enterprise\bin\disksrs.exe
 The SCM doesn't know wich version to execute
 
-|Command	| Argument 1 |	Argument 2
-|:----------|:-----------|:-------------
-C:\MyPrograms\Disk.exe | Sorter | Enterprise\bin\disksrs.exe
-C:\MyPrograms\Disk Sorter.exe | Enterprise\bin\disksrs.exe | 
-C:\MyPrograms\Disk Sorter Enterprise\bin\disksrs.exe
+| Command | Argument 1 | Argument 2 |
+| :--- | :--- | :--- |
+| C:\MyPrograms\Disk.exe | Sorter | Enterprise\bin\disksrs.exe |
+| C:\MyPrograms\Disk Sorter.exe | Enterprise\bin\disksrs.exe |  |
+| C:\MyPrograms\Disk  Sorter  Enterprise\bin\disksrs.exe |  |  |
 
 The SCM will search for option 1 to option 3 in order  
 This means that we can create an executable 

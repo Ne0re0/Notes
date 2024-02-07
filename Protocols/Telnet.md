@@ -8,8 +8,8 @@ telnet [ip] [port]
 Within telnet 
 ***To login***
 Type :  
-USER <username>  
-PASS <password>
+USER username  
+PASS password
 
 
 

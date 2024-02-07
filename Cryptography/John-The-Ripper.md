@@ -1,89 +1,76 @@
 # John The Ripper			
-Cracker les hash  
-Equivalent à Hashcat  
-			
-## etapes de cracks :
-1. Taper le hash sur internet (rainbow table potentielles)
-2. Identifier le hash 
-3. Crack avec john ou hashcat 
 
-## Determiner le type de hash
+- Crack hashes
+- `hashcat` equivalent
+
+## Determine hash type
+
 ```bash
 hashid hash.txt
 ```
-Ne pas négliger les sorties "moins probables"
 
-## Format du crack
+## Usage
 ```bash
 john --format=algo --wordlist=rockyou.txt hash.txt
 ```
 
 
-## Trouver les formats possibles de John :
+## List `john` hash formats
 ```bash
 john --list=formats
 ```
+
 ***Tips :***  
-Mettre raw dans le nom du format si c'est un hashtype de base  
-Exemple : ***raw-md5*** ou ***raw-sha1***
+If the hashtype is common, it may starts with `raw-`
+Example : ***raw-md5*** and ***raw-sha1***
 
 ## Windows authentication hashes (SAM File) :
-Un hash NTLM se decode avec le format nt -> ce format semble être confondu par les hashid avec du md5
+NT hashes seems to be taken as `MD5`
 
-## Linux authentication hashes :
-Located in /etc/shadow file and needs to be combined with /etc/shadow file  
+## Linux shadow file
+Located in `/etc/shadow` file and needs to be combined with `/etc/passwd` file  
+- Note that if only the hash is retrieved, Hashcat can be used to crack it
 ***Format : sha512crypt***   
-La syntaxe pour le crack
-- Rendre le hash comprehensible par john
+- Make the hash understandable for `john`
 ```bash
 unshadow /etc/passwd /etc/shadow > unshadowed.txt
 ```
-- Cracker le hash
+- Crack the hash
 ```bash
-john --format=sha512crypt --wordlist=../Pentest/rockyou.txt unshadowed.txt
+john --format=sha512crypt --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
 ```
 
 ## Useful flags :
-- ***--single :*** Wordmangling  
-Exemple :  
+- ***--single :*** Use Word Mangling
+Will try different combinations of the given informations to generate a custom wordlist  
+Example :  
 ```bash
 john --single --format=raw-md5 hash.txt
 ```
-Contenu de hash.txt 
+
+`hash.txt` content
 ```
 mike:214f456re4f65ref78rfefeff
 ```
-Pour ce type de bruteforce, il faut mettre les informations qui nous parraissent utiles (nom,prenom,birthday,phone number,...) devant les :
-
-		
-### Créer ses propres règles de wordmandling
-cf. john the ripper room task 8 thm pour creer la regle
+Note that informations have been pu before the hash
 
 ## Convert files to John crackable ones
 Works with a bunch of files format : 
-- Check if "fileformat"2john exists
+- Check if `xxx2john` exists
 ### Example
 ***Zip file*** -> crack password protected zipfile
 ```bash
 zip2john [zip file] > [output file]
 ```
+
 ```bash
 john --wordlist=/usr/share/wordlists/rockyou.txt zip_hash.txt
 ```
 
-### GPG encrypted files
-1. Tranformer le gpg file avec ssh2john 
-```bash
-pg2john [id_rsa file] > [output file]
-```
-2. Crack the hash
-```bash
-john --wordlist=/usr/share/wordlists/rockyou.txt gpg_hash.txt	
-```
 
 ## Word Mangling Wordlist Generation
 
 In this case, we suppose that we have retrieved real names and we want to generate stuff from those names : 
 ```bash
-john --wordlist=first_last_names.txt --rules=Login-Generator-i --stdout > usernames.txt
+john --wordlist=informations.txt --rules=Login-Generator-i --stdout > usernames.txt
 ```

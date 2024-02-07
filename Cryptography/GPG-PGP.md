@@ -20,11 +20,9 @@ cat message.clear
 ```
 
 
-
 ## Crack password
 
-Crack the possible passphrase with john and gpg2john
-
+Crack the password with `john` and `gpg2john`
 
 1. Tranformer le gpg file avec gpg2john 
 ```bash

@@ -1,8 +1,4 @@
-***Par HackingIsland - https://www.youtube.com/channel/UCaqcHDqE0DuqoaoVwJQa7vQ/videos***
-
- 
-Méthodologie pour résoudre les challenges de stéganographie :  
-La stéganographie est l'art de la dissimulation : son objet est de faire passer inaperçu un message dans un autre message.  
+***From HackingIsland*** - https://www.youtube.com/channel/UCaqcHDqE0DuqoaoVwJQa7vQ/videos
  
 # Méthodologie principale :
 - analyse visuelle
@@ -21,14 +17,13 @@ La stéganographie est l'art de la dissimulation : son objet est de faire passer
 - tineye / Reverse image search
 zsteg
 - Thumbnail exif
-__
- 
-## Outils classiques :
+- 
+## Common tools :
 - stegsolve
 - steganabra
 - steghide / stegcracker
  
-### Outils moins courants :
+### Rare tools :
 - stegseek
 - OpenStego
 - Stegpy
@@ -38,7 +33,7 @@ __
 - zsteg
 - stegoveritas
  
-## Ainsi que des techniques forensic :
+## Forensic technics :
 - file
 - exif
 - exiftool
@@ -46,7 +41,7 @@ __
 - foremost
 - binwalk
  
-## Audio :
+## Songs :
 - Audacity
 - MixW
 - MMSSTV / RX SSTV
@@ -54,24 +49,23 @@ __
 python3 WavSteg.py -r -b 1 -s soundfile -o outputfile
 - Deepsound (Comme steghide pour l'audio)
  
-## Vidéos :
+## Footages :
 - vlc
 - ffmpg
 - Veracrypt
  
-## Texte :
+## Texts :
 - Twitter Secrets Messages
 - Snow
 - Base64 padding
 
-## Outils en ligne :
-Equivalent stegsolve online :  
-https://stegonline.georgeom.net/upload  
-https://aperisolve.fr/  
+## Onlines tools :
+- https://stegonline.georgeom.net/upload  
+- https://aperisolve.fr/  
  
-## ELA (Error Level Analysis) - Analyse de compression (typique du JPEG)
-https://fotoforensics.com/  
+## ELA (Error Level Analysis) - Analyse de compression (JPEG typical)
+- https://fotoforensics.com/  
  
 ## FFT Analysis (Fast Fourier Transform) :  
-http://bigwww.epfl.ch/demo/ip/demos/FFT/  
-https://ejectamenta.com/imaging-experiments/fourifier/
+- http://bigwww.epfl.ch/demo/ip/demos/FFT/  
+- https://ejectamenta.com/imaging-experiments/fourifier/

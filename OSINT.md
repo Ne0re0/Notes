@@ -2,7 +2,7 @@
 
 https://osintframework.com/
 
-## GEOSINT
+## Geoint
 
 https://overpass-turbo.eu/ + GPT for the code
 
@@ -23,6 +23,7 @@ binwalk / foremost / scalpel
 steghide
 stegcracker
 ```
+
 - Reverse image search with google
 - Reverse image search with TinEye or Yandex
 - Reverse image search on weird things such as buildings, or something recognizable

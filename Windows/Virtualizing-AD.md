@@ -92,20 +92,6 @@ To organize user VMs, let's create a folder called "XYZ Domain."
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Joining the Lab Domain
 
 In VMware Workstation:
@@ -200,21 +186,4 @@ The computer should restart. You can now log in as 'other user' and administrato
 
 ## Take a Snapshot
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Add users
-
+## Play

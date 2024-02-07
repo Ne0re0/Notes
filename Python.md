@@ -11,22 +11,26 @@ print(response.cookies)
 ```python
 resp = requests.post(url, cookies={'admin':'value'})
 ```
+
 ### Os
 ```python
 import os
 os.system("ls")
 ```
+
 ### Pty
 ```python
 # Open a shell prompt
 import pty
 pty.spawn("/bin/bash")
 ```
+
 ### Hashlib
 ```python
 hash = hashlib.md5("password".encode()).hexdigest()
 hash = hashlib.sha256("password".encode()).hexdigest()
 ```
+
 ### Socket
 ```python
 import socket
@@ -46,14 +50,17 @@ while True:
 	    ret = "Some chicken"
 	    s.send(ret.encode()+b"\n")
 ```
+
 ### Scapy
+
 ### Sys
+
 ### Paramiko 
-Paramiko is an SSHv2 implementation
+- Paramiko is an SSHv2 implementation
 
 # WebServer
 
-## On prem
+## On premise
 ```bash
 python -m http.server 9000
 ```
@@ -87,7 +94,7 @@ Ngrok addresses look like : https://4348-2a01-e0a-6e-dd60-4b76-ce7b-d8b-d846.eu.
 ##### Convert to .exe
 **Tools** : 
 - Py2exe
-- 
+- ...
 
 ### Subdomain enumeration 
 ```python

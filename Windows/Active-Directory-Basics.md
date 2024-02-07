@@ -1,6 +1,4 @@
-# Active directory
-
-https://github.com/WazeHell/vulnerable-AD
+# Active Directory Basics
 
 
 ## Vocabulary :
@@ -13,6 +11,14 @@ https://github.com/WazeHell/vulnerable-AD
 - ***Tree*** => At least two ADs sharing the same domain name
 - ***Forest*** => At least two trees linked together by a trust relationship
 - ***Trust Relationship*** => Authorise a user from the first domain to access files in the second domain (They can be one way or both way)
+- **KDC Key Distribution Center** : Service for issuing TGT and service tickets that consist of the Authentication Service and the Ticket Granting Service.
+-  **KDC Long Terme Secret Key (KDC LT Key)** : The KDC key is based on the KRBTGT service account. It is used to encrypt the TGT and sign the PAC.
+-  **Client Long Term Secret Key (Client LT Key)** : It is used to check the encrypted timestamp and encrypt the session key.
+-  **Service Long Term Secret Key (Service LT Key)** 
+	- The service key is based on the service account. 
+	- It is used to encrypt the service portion of the service ticket and sign the PAC.
+-  **Local Security Authority Subsystem Service (LSASS)**
+	 - It's a memory process that stores credentials on an active directory server and can store Kerberos ticket along with other credential types to act as the gatekeeper and accept or reject the credentials provided. 
 
 ## Objects : 
 ***All of the 3 following objects are considered security principals***  
@@ -28,15 +34,16 @@ https://github.com/WazeHell/vulnerable-AD
 	- Windows Groups work the same as Linux Groups
 	- They can contains users, machines and other groups
 
-Security Group |Description
-|:-----|:-----|
-Domain Admins | Users of this group have administrative privileges over the entire domain including the DCs.
-Server Operators | Users in this group can administer Domain Controllers. They cannot change any administrative group memberships.
-Backup Operators | Users in this group are allowed to access any file, ignoring their permissions. They are used to perform backups of data on computers.
-Account Operators | Users in this group can create or modify other accounts in the domain.
-Domain Users | Includes all existing user accounts in the domain.
-Domain Computers | Includes all existing computers in the domain.
-Domain Controllers | Includes all existing DCs on the domain.
+
+| Security Group | Description |
+| :--- | :--- |
+| Domain Admins | Users of this group have administrative privileges over the entire domain including the DCs. |
+| Server Operators | Users in this group can administer Domain Controllers. They cannot change any administrative group memberships. |
+| Backup Operators | Users in this group are allowed to access any file,  ignoring their permissions. They are used to perform backups of data on computers. |
+| Account Operators | Users in this group can create or modify other accounts in the domain. |
+| Domain Users | Includes all existing user accounts in the domain. |
+| Domain Computers | Includes all existing computers in the domain. |
+| Domain Controllers | Includes all existing DCs on the domain. |
 
 
 ## AD Management
@@ -65,7 +72,7 @@ In order to respect the least privilege principle, machines are generally divide
 - Link it to the GPO where you want the policies to apply.  
 
 If you want to force any update
-```powershell
+```cmd
 gpupdate /force
 ```
 

