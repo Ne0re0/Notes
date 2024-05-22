@@ -3,7 +3,7 @@
 Protocol which allow to request and administrate Active Directories registers.
 
 Port : 389  
-Unix Equivalents : `OpenLDAP`, `Samba`
+Unix Equivalents : `slapd.service` `OpenLDAP`, `Samba`
 
 
 Each database entry in Active Directory contains :

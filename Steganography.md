@@ -59,6 +59,15 @@ python3 WavSteg.py -r -b 1 -s soundfile -o outputfile
 - Snow
 - Base64 padding
 
+# APNG
+
+**Animated Portable Network Graphics** (**APNG**) is a [file format](https://en.wikipedia.org/wiki/File_format "File format") which extends the [Portable Network Graphics](https://en.wikipedia.org/wiki/Portable_Network_Graphics "Portable Network Graphics") (PNG) specification to permit [animated](https://en.wikipedia.org/wiki/Computer_animation "Computer animation") images that work similarly to animated [GIF](https://en.wikipedia.org/wiki/Graphics_Interchange_Format "Graphics Interchange Format") files, while supporting 24 or 48-bit images and [full alpha transparency](https://en.wikipedia.org/wiki/Alpha_compositing "Alpha compositing") not available for GIFs. It also retains [backward compatibility](https://en.wikipedia.org/wiki/Backward_compatibility "Backward compatibility") with non-animated PNG files.
+
+***Technics :***
+- Separate frames
+
+https://ezgif.com/apng-maker
+
 ## Onlines tools :
 - https://stegonline.georgeom.net/upload  
 - https://aperisolve.fr/  
