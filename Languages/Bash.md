@@ -45,3 +45,15 @@ Explanation :
 - So it is testing if `$PASS` equals to 1 which is probably false
 - **OR** if `randomstring` is true (a non empty string is always true in bash)
 - So it prints `success`
+
+## Bash -v injection `[[! -v "$1"]]`
+
+If \$1 is something like `x[$(touch /tmp/pwned)]` then the command is executed
+
+**Note :** The $1 value must be single quoted, either, it will be interpreted before actually accessing the script
+
+**POC**
+```bash
+./vuln_binary 'x[$(touch /tmp/pwned)]'
+```
+

