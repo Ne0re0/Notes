@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Générer un nom de session aléatoire
+SESSION_NAME="session_$(/bin/date +%s%N | /bin/sha256sum | /bin/head -c 8)"
+
+if [[ "$1" == "exit" ]]; then
+    # Chercher la session tmux en cours
+    CURRENT_SESSION=$(/usr/bin/tmux display-message -p '#S')
+    /usr/bin/tmux kill-session -t "$CURRENT_SESSION"
+    exit 0
+fi
+
+CURRENT_DIR=$(pwd)
+
+/usr/bin/tmux new-session -d -s "$SESSION_NAME" -c "$CURRENT_DIR"
+
+# Split window horizontally
+/usr/bin/tmux split-window -h -t "$SESSION_NAME"
+
+# Split window vertically
+/usr/bin/tmux split-window -v -t "$SESSION_NAME"
+
+# Select first pane and split window vertically
+/usr/bin/tmux select-pane -t "$SESSION_NAME".0
+/usr/bin/tmux split-window -v -t "$SESSION_NAME"
+
+# Define TERM in each pane
+/usr/bin/tmux send-keys -t "$SESSION_NAME".0 'export TERM=xterm-256color && clear' C-m
+/usr/bin/tmux send-keys -t "$SESSION_NAME".1 'export TERM=xterm-256color && clear' C-m
+/usr/bin/tmux send-keys -t "$SESSION_NAME".2 'export TERM=xterm-256color && clear' C-m
+/usr/bin/tmux send-keys -t "$SESSION_NAME".3 'export TERM=xterm-256color && clear' C-m
+
+# Attacher à la session
+/usr/bin/tmux attach -t "$SESSION_NAME"

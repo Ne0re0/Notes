@@ -1,0 +1,11 @@
+python3 -c 'import pty;pty.spawn("/bin/bash")'; 
+python3 -c 'import pty;pty.spawn("/bin/sh")'; 
+python -c 'import pty;pty.spawn("/bin/sh")'; 
+python -c 'import pty;pty.spawn("/bin/bash")'; 
+
+python3 -c 'import os;os.system("/bin/bash")'; 
+python3 -c 'import os;os.system("/bin/sh")'; 
+python -c 'import os;os.system("/bin/bash")'; 
+python -c 'import os;os.system("/bin/sh")'; 
+
+export TERM=xterm ; export SHELL=bash

@@ -42,7 +42,7 @@ holehe example@gmail.com
 ## Usernames
 https://whatsmyname.app/
 
-
+Hunt down social media accounts by username across [400+ social networks](https://github.com/sherlock-project/sherlock/blob/master/docs/sites.md)
 ## SocMInt
 Osintgram (wasn't working when i wrote that)
 

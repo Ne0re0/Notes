@@ -1,0 +1,69 @@
+Shell scripting
+
+- la variable $# contient le nombre de paramètres passés au script
+- pour chaque entier i entre 1 et 9, la variable $i contient le i-ème paramètre
+- la variable $@ contient la liste de tous les paramètres séparés par des espaces
+- la variable $0 contient le nom du programme en cours d’exécution
+
+
+Les tests
+Test de fichiers
+Si le fichier existe et... :
+-r :est lisible
+-w :l’écriture est possible
+-x :exécutable
+Exemple :
+if [ -r $2 ] ;then
+...
+...
+else
+echo "$0 :vous n’avez pas le droit de lire le fichier $2">&2 fi
+-f :est un fichier ordinaire
+-d :est un répertoire
+-p :est une représentation interne d’un dispositif de communication
+-c :est un pseudo-fichier du type accès caractère par caractère
+-b :est un pseudo-fichier du type accès par bloc
+-L :est un lien symbolique
+-u : son Set UID=1
+-g :son Set GID=1
+-k :son Sticky Bit=1
+-s :est non-vide et existe
+
+
+Tests de chaines
+test chaîne (ou [ chaîne ]) : vraie si chaîne est une chaîne vide
+XAV
+-z cha^ne :vraie si cha^ne est une cha^ne vide
+-w cha^ne :vraie si cha^ne est une cha^ne non-vide
+
+
+Tests binaires
+chaine1 = chaine2 : vraie si chaine1 est egale a chaine2
+chaine1 != chaine2 : vraie si chaine1 n’est pas egale a chaine2
+n1 -eq n2 : vraie si n1 est egal a n2
+n1 -ne n2 : vraie si n1 est di erent de n2
+n1 -gt n2 : vraie si n1 est plus grand strictement a n2
+n1 -ge n2 : vraie si n1 est plus grand ou egal a n2
+n1 -lt n2 : vraie si n1 est plus petit strictement a n2
+n1 -le n2 : vraie si n1 est plus petit ou egal a n2
+
+
+Fonctions
+L’interêt d’une fonction est que l’on peut en mettre plusieurs dans un script afin de gérer des
+repétitions de commandes (ou de groupes de commandes).
+Déclaration :
+nom(){
+...
+... ;
+}
+ou
+nom(){.... ;}
+A l’intérieur d’une fonction il est possible d’utiliser l’instruction “return n”, cela permet
+de quitter la fonction avec le code de retour n.
+Appel :
+% nom argument1 argument2 ... argumentn
+Note:
+Vous pouvez utiliser l’URL http://shellcheck.net afin de vérifier la syntaxe de vos script shell
+pour les shells de type Bourne Shell (sh) ou avec:
+bash -n <votre_script>
+pour les shells de ty

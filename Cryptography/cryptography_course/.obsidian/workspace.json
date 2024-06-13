@@ -1,0 +1,253 @@
+{
+  "main": {
+    "id": "5418990066ef4837",
+    "type": "split",
+    "children": [
+      {
+        "id": "b18e4fad65b83014",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cd2977772e52334e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Cours 2 - Par Bloc.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "ac59d0b97c2f8bbf",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "TP2 - OpenSSL.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d5d74f652a1ee7a5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "TP3 - Hachage.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "165e57049b016822",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "TP4 - Codes détecteurs et correcteurs d'erreurs.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e1502f7ccacd9e7e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Cours 5 - Signature Certificat et PKI.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "618c20db34489417",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "TP5 - Signature Certificat et PKI.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "5e35d8d2d2c07c35",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "TP6 - HTTP et certificats TLS-SSL.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 6
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3d2e07b13d94f057",
+    "type": "split",
+    "children": [
+      {
+        "id": "ed651035c2168e0e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3ec944e9870acf6e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "f5ecf8aa8e13eb7c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "f7e7eca506b84a00",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "a52c6086f833be03",
+    "type": "split",
+    "children": [
+      {
+        "id": "4f4956128feb49a7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bad3f409abc916c8",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "TP6 - HTTP et certificats TLS-SSL.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9d27e9c8205523a2",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "TP6 - HTTP et certificats TLS-SSL.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "e285e0aafedaca3f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "026b8e1eadd6d6b6",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "TP6 - HTTP et certificats TLS-SSL.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "3ec944e9870acf6e",
+  "lastOpenFiles": [
+    "Untitled",
+    "images/Pasted image 20240521142634.png",
+    "images/Pasted image 20240521141937.png",
+    "images/Pasted image 20240521141841.png",
+    "images/Pasted image 20240521141619.png",
+    "images/Pasted image 20240521141554.png",
+    "images/Pasted image 20240521141532.png",
+    "images/Pasted image 20240521141243.png",
+    "images/Pasted image 20240521141128.png",
+    "TP5 - Signature Certificat et PKI.md",
+    "TP6 - HTTP et certificats TLS-SSL.md",
+    "signature.bin",
+    "Tp5-Certificats/Certificats/certificat.pem",
+    "Tp5-Certificats/Certificats/maClePublique.pem",
+    "Tp5-Certificats/Certificats/maCle.pem",
+    "Tp5-Certificats/Certificats",
+    "Cours 5 - Signature Certificat et PKI.md",
+    "Tp5-Certificats/tempCodeRunnerFile.py",
+    "Tp5-Certificats/signature.bin",
+    "Tp5-Certificats/message.txt",
+    "Tp5-Certificats/public_key.pem",
+    "Tp5-Certificats/private_key.pem",
+    "images/Pasted image 20240514141932.png",
+    "images/Pasted image 20240514141904.png",
+    "TP4 - Codes détecteurs et correcteurs d'erreurs.md",
+    "TP3 - Hachage.md",
+    "TP2 - OpenSSL.md",
+    "Cours 2 - Par Bloc.md"
+  ]
+}

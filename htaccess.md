@@ -7,6 +7,28 @@
 
 If `AllowOverride` is set to `All`, then malicious `.htaccess` will be interpreted as legit configuration files.
 
+**Directory index**
+
+```bash
+DirectoryIndex home.html
+```
+
+**Rewrite URLs** :
+With the **mod_rewrite** module of the Apache HTTP Web server preinstalled on your Web Hosting plan, you can use this feature to redirect:
+
+- All HTTP requests to a single file on your website.
+- A portion of HTTP requests to a single file on your website.
+- Your domain name to its www subdomain.
+- Requests to a particular folder, without displaying the folder concerned.
+- Website requests to HTTPS when a URL was opened in HTTP.
+
+https://help.ovhcloud.com/csm/en-web-hosting-htaccess-url-rewriting?id=kb_article_view&sysparm_article=KB0052861
+
+**Redirect error messages**
+```bash
+ErrorDocument Error_Code_Number Message_Or_Destination
+```
+
 **Authorize reading**
 ```.htaccess
 <Files ".htaccess">

@@ -351,3 +351,23 @@ pickle.dump(your_object, your_file, protocol=2)
 ```
 
 You must specify in python 3 a protocol lower than `3` in order to be able to load the data in python 2. You can specify the `protocol` parameter when invoking [`pickle.dump`](https://docs.python.org/2/library/pickle.html#pickle.dump).
+
+# Comparisons
+
+We are looking to a number which is > to 0 and < to 0 but different to 0
+**Solve : ` 0.1` (notice the space before 0.1)**
+```python
+if not num < "0":
+	s.send(b"Invalid number.\n")
+	exit()
+
+num = float(num)
+if not num > float("0"):
+	s.send(b"Invalid number.\n")
+	exit()
+
+num = int(num)
+if not num == int("0"):
+	s.send(b"Invalid number.\n")
+	exit()
+```
