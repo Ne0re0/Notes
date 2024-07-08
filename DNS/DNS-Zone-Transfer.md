@@ -1,17 +1,3 @@
-# Domain Name Service (DNS)
-
-## Configure for Kali
-#### EN
-- Network Manager -> Advanced Network Configuration -> Your Connection -> IPv4 Settings
-- Set your DNS IP here     
-- Add another DNS such as 1.1.1.1 or similar to ensure you still have internet access
-- Run `sudo systemctl restart NetworkManager` and test your DNS similar to the steps above.
-#### FR
-- Configuration Réseau Avancée -> Réseau sur lequel vous êtes connecté -> Paramètres IPv4
-- Définir l'adresse DNS
-- Lancer `sudo systemctl restart NetworkManager`
-
-## Flaws
 ### Zone Transfer
 
 It requires at least 2 DNS Server : 

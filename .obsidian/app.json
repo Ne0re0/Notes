@@ -2,5 +2,7 @@
   "attachmentFolderPath": "images",
   "useMarkdownLinks": true,
   "newLinkFormat": "relative",
-  "readableLineLength": false
+  "readableLineLength": false,
+  "autoPairMarkdown": true,
+  "vimMode": false
 }

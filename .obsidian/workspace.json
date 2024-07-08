@@ -4,71 +4,46 @@
     "type": "split",
     "children": [
       {
-        "id": "1aed0af070105be6",
+        "id": "e17ca086005315e2",
         "type": "tabs",
         "children": [
           {
-            "id": "b2da171a9f76950a",
+            "id": "8496b3db666663dc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Steganography/Steganography.md",
+                "file": "Steganography/Steganography-Video.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "42f9397d5fb682c0",
+            "id": "8feb191f7e4f9c4f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Steganography/Steganography-Images.md",
+                "file": "DNS/DNS-Bind-Setup.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "724b50b545caf034",
+            "id": "e462bce8318d7288",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Steganography/Steganography-Audio.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "422ad16a4970a9e4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Radio Frequencies.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "04a548b893d28ce4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "OSINT.md",
+                "file": "Protocols/DHCP.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -134,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Radio Frequencies.md",
+                "file": "Steganography/Steganography-Video.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,7 +126,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Radio Frequencies.md",
+                "file": "Steganography/Steganography-Video.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -174,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Radio Frequencies.md"
+                "file": "Steganography/Steganography-Video.md"
               }
             }
           }
@@ -195,46 +170,47 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "422ad16a4970a9e4",
+  "active": "8496b3db666663dc",
   "lastOpenFiles": [
-    "Steganography/Steganography-Audio.md",
-    "Radio Frequencies.md",
+    "Steganography/Steganography-Text.md",
     "Steganography/Steganography-Images.md",
-    "Steganography/Steganography-Video.md",
+    "Steganography/Steganography-Audio.md",
     "Steganography/Steganography.md",
-    "Steganography-Footaged.md",
-    "OSINT.md",
+    "DNS/DNS-RPZ.md",
+    "DNS/DNS-Bind-Setup.md",
+    "Protocols/DHCP.md",
+    "Proxy.md",
+    "Web_Pentesting/htaccess.md",
+    "DNS/DNS-Zone-Transfer.md",
+    "Docker.md",
+    "DNS/DNS.md",
+    "Dash-To-Dock.md",
+    "DNS",
+    "Web_Pentesting/SQLi.md",
+    "Flask.md",
+    "Web_Pentesting/File-Inclusion.md",
+    "Others.md",
+    "Hydra.md",
+    "KeePass.md",
+    "Hugo.md",
+    "Google-Dork.md",
+    "GitHub_Basics.png",
+    "Bot-Discord.md",
+    "GitHub_Basics2.png",
+    "Web_Pentesting/JWT.md",
+    "images/Pasted image 20240623135927.png",
+    "images/Pasted image 20240623135716.png",
+    "images/Pasted image 20240623135654.png",
+    "Priv-Esc-Linux.md",
+    "tmux/TMUX.md",
+    "Tailscale.md",
     "Steganography",
     "images/Pasted image 20240611171253.png",
-    "Web_Pentesting/JWT.md",
-    "Web_Pentesting/Upload-Bypass.md",
-    "Languages/Python.md",
-    "JavaScript.md",
-    "Proxy.md",
-    "Web_Pentesting/File-Inclusion.md",
-    "Web_Pentesting/XSS.md",
-    "htaccess.md",
-    "Metasploit.md",
-    "XDebug.md",
-    "Wireshark/SNMP Authentication.md",
-    "Binary exploitation/Pwn.md",
-    "Binary exploitation/Buffer-Overflow.md",
-    "Web-Pentesting/SQLi.md",
-    "Databases/MySQL.md",
-    "OSPF Authentication.md",
     "images/Pasted image 20240530151745.png",
-    "Wireshark/NFS.md",
     "images/Pasted image 20240530082646.png",
-    "PCAP files.md",
     "Wireshark",
-    "Wireshark/Kerberos Authentication.md",
     "images/Pasted image 20240529145145.png",
     "images/Pasted image 20240529102907.png",
-    "images/Pasted image 20240522132332.png",
-    "images/Pasted image 20240521164854.png",
-    "images/Pasted image 20240518044044.png",
-    "images/Pasted image 20240518042703.png",
-    "images/Pasted image 20240518042604.png",
     "Languages",
     "Untitled.canvas"
   ]

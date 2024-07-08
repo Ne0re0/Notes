@@ -30,6 +30,7 @@ ps axfj
 netstat             # Enumerate open ports
 netstat -ltp        # Enumerate listening tcp ports and gives PID
 netstat -ano
+netstat -tunl
 ss -tunlp
 ```
 
