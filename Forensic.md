@@ -28,4 +28,4 @@ volatility -f File --profile=Win7SP0x86 envars # display env variable for the gi
 
 ## Network analysis
 - wireshark
-- Volatilityl
+- Volatility

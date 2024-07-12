@@ -1,23 +1,29 @@
-# Docker
+# Docker Basics
 
+# Install
+
+```bash
+sudo apt install docker-compose
+```
 ## Usage
 it uses a file named `Dockerfile` which contains the script to run to containerize the targeted app  
 
-1. Create the dockerfile at the app's root directory
+1. Create the `Dockerfile` at the app's root directory
 ```bash
 touch Dockerfile
 ```
+
 2. Copy and past in
-```plain
-# syntax=docker/dockerfile:1
-   
+```Dockerfile
 FROM node:18-alpine
+
 WORKDIR /app
 COPY . .
 RUN yarn install --production
 CMD ["node", "src/index.js"]
 EXPOSE 3000
 ```
+
 - Start from the node:18-alpine image
 - WORKDIR /directory_to_build
 - The CMD directive specifies the default command to run when starting a container from this image.
@@ -42,7 +48,11 @@ sudo docker run -dp 8080:80 getting-started
 - `80` docker exposed port
 5. Wait a second 
 
-## Command Sheat cheet
+# Tips
+
+- Using `tail -f filename.txt` as the `CMD` value in `Dockerfile` will get the docker never end 
+
+# Command Cheat sheet
 
 ```bash
 sudo docker ps # list running dockers
@@ -53,6 +63,15 @@ sudo docker image ls # list dockers
 sudo docker exec -it DOCKER_PS_ID /bin/bash # Get into the docker's shell
 ```
 
+# Cleanup
+
+```bash
+docker system prune # Remove all unused data
+docker swarm leave --force # leave the swarm env
+docker service rm $(docker service ls -q) # Remove all services
+docker stop $(docker ps -aq) --force # Remove all containers
+docker rmi $(docker images -q) --force
+```
 
 ## Share the app
 1. On the web app

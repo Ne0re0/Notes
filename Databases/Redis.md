@@ -1,6 +1,7 @@
 # Redis
 
-Redis is a NoSQL Database
+- Redis is a NoSQL database
+- Redis is a key-value database
 
 ## Cheat Sheet
 

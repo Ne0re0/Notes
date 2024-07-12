@@ -87,6 +87,75 @@ fr.wikipedia.org        CNAME fr.wikipedia.org.
 24.0.2.0.192.rpz-ip      CNAME   .
 ```
 
+# Docker
+
+```bash
+sudo apt-get install docker-compose -y
+```
+
+**Copy files and change rights**
+```bash
+# Copy files to /DNS-RPZ/
+# make sure you own the folder
+# sudo chown -R user:user /DNS-RPZ/
+cd /DNS-RPZ/
+chmod +r -R .
+chmod -R 777 logs # Change to 777 also the directory
+```
+
+**Init the swarm**
+```bash
+sudo docker swarm init
+```
+
+**Init the local registry**
+```bash
+sudo docker service create --name registry --publish published=5000,target=5000 registry:2
+```
+
+**Verify the registry is set up correctly**
+```bash
+curl http://localhost:5000/v2/ # should return {}
+```
+
+**Build the image**
+```bash
+sudo docker-compose build
+```
+
+**Push the image to the local registry**
+```bash
+sudo docker-compose push # To the docker-compose image attribute
+```
+
+**Create the stack**
+```bash
+sudo docker stack deploy -c docker-compose.yml dns_rpz_stack
+```
+
+**Scale the stack**
+```bash
+sudo docker service scale dns_rpz_stack_bind=4
+```
+
+**Test**
+```bash
+nslookup neoreo.fr 127.0.0.1 # Should return NXDomain because it is an entry in the rpz zone
+nslookup ssh.neoreo.fr 127.0.0.1 # Should return an IP
+```
+
+**Automate the DNS zone update (everyday at 08:00 AM)**
+```bash
+# As root
+echo "00 08 * * * root /DNS-RPZ/bin/DNS-Zone-Generator.sh" >> /etc/crontab
+```
+
+**Delete the DNS dockers**
+```bash
+sudo docker service rm dns_rpz_stack_bind
+```
+
+
 # Malicious domains
 
 - https://raw.githubusercontent.com/romainmarcoux/malicious-domains/main/full-domains-aa.txt

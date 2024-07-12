@@ -1,4 +1,4 @@
-# Reconnaissance 
+# Recon
 
 ## Passive Recon
 - Do not engage the target

@@ -8,6 +8,16 @@
 - WIFI Pineapple
 - cewl
 - pipal
+
+# Bruteforce
+
+- https://github.com/flancast90/wifi-bf
+
+```bash
+python3 __main__.py -f wordlist.txt -v 
+```
+
+![](../images/Pasted%20image%2020240712090835.png)
 ## Password cracking
 
 - Turn wireless cards into monitor mode
@@ -78,3 +88,6 @@ set arp.spoof.targets IP_TO_SPOOF
 ##### Flipper 0
 - `WiFI marauder module` 
 - `Evil portal module`:  prompt a login page (google, facebook, ...)
+
+# Resources
+- https://github.com/thevickypedia/pywifi-controls

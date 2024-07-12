@@ -2,7 +2,6 @@
 # Remote Desktop Protocol
 
 - Usually on port 3389
-
 # Connection
 
 ```bash

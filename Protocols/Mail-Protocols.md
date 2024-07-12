@@ -1,4 +1,5 @@
 # Mail tranfer protocols
+
 1. ***SMTP*** : Simple Mail Transfer Protocole
  	- Used to push mails to servers
 2. ***POP***/***POP3*** -> Post Office Protocole
@@ -16,7 +17,7 @@ sender -> Mail -> SMTP -> Internet Server-> POP/IMAP -> receiver
 
 ## SMTP
 
-***Enumération avec Metasploit : msfconsole***
+**Enumerate with Metasploit**
 
 ```bash
 search smtp_version		-> find mail name xxxxx.xxxx	and 	mail Transfer agent

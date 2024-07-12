@@ -1,3 +1,5 @@
+
+
 ```bash
-curl gopher://exemple.com
+curl gopher://example.com
 ```

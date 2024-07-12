@@ -17,7 +17,7 @@ The TLS Record Protocol provides connection security that has two basic properti
 
 1. ***Cryptographic security***: TLS should be used to establish a secure connection between two parties.
 2. ***Interoperability***: Independent programmers should  be able to successfully exchange cryptographic parameters without knowledge of one another's code.
-3. 
+
 
 
 

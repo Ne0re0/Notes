@@ -1,6 +1,6 @@
-# Cybersecurity Learning Notes
+# Cyber-security Learning Notes
 
-This repository contains a collection of notes from my cybersecurity learning routine, and I don't want to lose them.
+This repository contains a collection of notes from my cyber-security learning routine, and I don't want to lose them.
 
 **Note:** Don't take this repository too seriously 😄
 

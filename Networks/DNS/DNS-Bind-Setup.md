@@ -99,7 +99,7 @@ options {
     listen-on port 53 {localhost; 10.0.2.15;};
     dnssec-validation auto;
     allow-recursion { 127.0.0.1; };
-    auth-nxdomain no;    # conform to RFC1035
+    auth-nxdomain no;
     listen-on-v6 { any; };
 };
 ```

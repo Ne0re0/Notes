@@ -16,7 +16,7 @@ nmap IP -p-
 | -sT    | Uses three way handshake                                            |
 | -Pn    | Bypass ping step when the target as "no response to ping" but is up |
 
-### Enumerate unkown open ports 
+### Enumerate unknown open ports 
 ```bash
 sudo fuser -v 9000/tcp # localhost
 ```

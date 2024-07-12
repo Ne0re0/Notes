@@ -74,11 +74,12 @@ cupp -i # Enter interactive mode
 ```bash
 john --wordlist=informations.txt --rules=RULE_NAME --stdout
 ```
+
 ## Username generation
 
-| Rule name |
-| ---- |
-| Login-Generator |
+| Rule name         |
+| ----------------- |
+| Login-Generator   |
 | Login-Generator-i |
 ## Password variations
 

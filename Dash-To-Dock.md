@@ -1,4 +1,8 @@
 
+**Ever wanted to make your menu bar always displayed ?**
+
+![](images/Pasted%20image%2020240708170345.png)
+
 Extension : https://github.com/micheleg/dash-to-dock?tab=readme-ov-file
 
 ```bash
