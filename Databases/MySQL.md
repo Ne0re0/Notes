@@ -11,7 +11,7 @@ mysql -u [username] -p -h [host ip]
 source ./file.sql
 ```
 
-# MySQL CheatSheet
+# MySQL Cheatsheet
 
 ```mysql
 SHOW DATABASES; -- List databases

